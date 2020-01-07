@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/setup-setup-dotnet@v1
     - uses: actions/setup-gitversion@v1.0.0
       with: 
         gitversion-version: 5.1.1
