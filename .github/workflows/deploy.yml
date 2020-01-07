@@ -1,13 +1,15 @@
 name: Build and deploy
 on: [push]
+
+env:
+  BOB: Bob is here
+
 jobs:
   test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-    env:
-      BOB: Bob is here
     steps:
     - name: Hello world
       run: echo Hello world $Env:BOB
