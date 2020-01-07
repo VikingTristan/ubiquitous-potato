@@ -11,3 +11,13 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+  theme1:
+    needs: azurelogin
+    name: Theme 1
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Create environment variables
+      run: |
+        GitVersion /version
+        GitVersion
