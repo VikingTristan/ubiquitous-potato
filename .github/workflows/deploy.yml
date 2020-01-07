@@ -9,11 +9,12 @@ jobs:
     name: Theme 1
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    # - name: Fetch tags and master for GitVersion
-    #   run: |
-    #     git fetch --tags
-    #     git branch --create-reflog master origin/master
+    # - uses: actions/checkout@v2
+    - uses: actions/checkout@v1
+    - name: Fetch tags and master for GitVersion
+      run: |
+        git fetch --tags
+        git branch --create-reflog master origin/master
     - name: Install GitVersion
       uses: gittools/actions/setup-gitversion@v0.3
       with:
