@@ -1,25 +1,33 @@
 name: Build and deploy
 on: [push]
 
-jobs:
-#   azurelogin:
-#     name: Azure Login
+steps:
+  - name: Hello world
+    run: echo Hello world $FIRST_NAME $middle_name $Last_Name!
+    env:
+      FIRST_NAME: Mona
+      middle_name: The
+      Last_Name: Octocat
+
+# jobs:
+# #   azurelogin:
+# #     name: Azure Login
+# #     runs-on: windows-latest
+# #     steps:
+# #     - name: Azure Login
+# #       uses: azure/login@v1
+# #       with:
+# #         creds: ${{ secrets.AZURE_CREDENTIALS }}
+#   theme1:
+#     # needs: azurelogin
+#     name: Theme 1
 #     runs-on: windows-latest
 #     steps:
-#     - name: Azure Login
-#       uses: azure/login@v1
-#       with:
-#         creds: ${{ secrets.AZURE_CREDENTIALS }}
-  theme1:
-    # needs: azurelogin
-    name: Theme 1
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Check environment variables
-      run: echo Env variable is $TEST
-      env:
-        TEST: Test variable
-    #   env:
-        # BRANCH: ${{ GitVersion_BranchName }}
-    #   run: echo This branch is $BRANCH
+#     - uses: actions/checkout@v2
+#     - name: Check environment variables
+#       run: echo Env variable is $TEST
+#       env:
+#         TEST: Test variable
+#     #   env:
+#         # BRANCH: ${{ GitVersion_BranchName }}
+#     #   run: echo This branch is $BRANCH
