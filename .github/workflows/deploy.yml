@@ -5,34 +5,39 @@ env:
   BOB: Bob is here
 
 jobs:
-  test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
+  azurelogin:
+    name: Azure Login
+    runs-on: windows-latest
     steps:
-    - name: Hello world
-      run: echo Hello world $Env:BOB version? $Env:GitVersion_BranchName
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+  theme1:
+    needs: azurelogin
+    name: Theme 1
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
 
-# jobs:
-# #   azurelogin:
-# #     name: Azure Login
-# #     runs-on: windows-latest
-# #     steps:
-# #     - name: Azure Login
-# #       uses: azure/login@v1
-# #       with:
-# #         creds: ${{ secrets.AZURE_CREDENTIALS }}
-#   theme1:
-#     # needs: azurelogin
-#     name: Theme 1
-#     runs-on: windows-latest
-#     steps:
-#     - uses: actions/checkout@v2
-#     - name: Check environment variables
-#       run: echo Env variable is $TEST
-#       env:
-#         TEST: Test variable
-#     #   env:
-#         # BRANCH: ${{ GitVersion_BranchName }}
-#     #   run: echo This branch is $BRANCH
+    - name: Check environment variables
+      run: |
+        echo Env variable is $Env:BOB
+        echo Reference is $Env:GITHUB_REF
+
+    - name: Set Node.js 12.x
+      uses: actions/setup-node@master
+      with:
+        node-version: 12.x
+
+    - name: Install
+      run: |
+        npm ci
+    - name: Build
+      run: npm run theme1
+
+    - name: Azure Deploy
+      uses: azure/CLI@v1
+      with:
+        inlineScript: |
+          az storage blob upload-batch -s dist -d \$web --account-name payexdesignguide
