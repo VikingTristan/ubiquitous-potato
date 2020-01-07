@@ -16,7 +16,7 @@ jobs:
   theme1:
     needs: azurelogin
     name: Theme 1
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
 
