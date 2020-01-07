@@ -4,7 +4,8 @@
   "description": "This project builds the same code, but with two different themes. When code is pushed, it uses GitHub Actions to log in to Azure and deploy the two different outputs to their own blob storages.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "theme1": "webpack --theme theme1",
+    "theme2": "webpack --theme theme2"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/VikingTristan/ubiquitous-potato/issues"
   },
-  "homepage": "https://github.com/VikingTristan/ubiquitous-potato#readme"
+  "homepage": "https://github.com/VikingTristan/ubiquitous-potato#readme",
+  "devDependencies": {
+    "css-loader": "^3.4.1",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
 }
