@@ -1,6 +1,9 @@
 name: Build and deploy
 on: [push]
 
+env:
+  TEST: Test variable
+
 jobs:
   azurelogin:
     name: Azure Login
@@ -17,6 +20,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Check environment variables
-      env:
-        BRANCH: ${{ GitVersion_BranchName }}
-      run: echo This branch is $BRANCH
+      run: echo Env variable is $TEST
+    #   env:
+        # BRANCH: ${{ GitVersion_BranchName }}
+    #   run: echo This branch is $BRANCH
