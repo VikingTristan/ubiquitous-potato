@@ -6,13 +6,11 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
+    env:
+      BOB: Bob is here
     steps:
     - name: Hello world
-      run: echo Hello world $GITHUB_REF ${FIRST_NAME} $Env:middle_name  %Last_Name%
-      env:
-        FIRST_NAME: Mona
-        middle_name: The
-        Last_Name: Octocat
+      run: echo Hello world $Env:middle_name
 
 # jobs:
 # #   azurelogin:
