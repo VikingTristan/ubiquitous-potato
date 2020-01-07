@@ -3,11 +3,11 @@ name: Build and deploy
 on: [push]
 
 jobs:
-    azurelogin:
-        name: Azure Login
-        runs-on: windows-latest
-        steps:
-        - name: Azure Login
-        uses: azure/login@v1
-        with:
-            creds: ${{ secrets.AZURE_CREDENTIALS }}
+  azurelogin:
+    name: Azure Login
+    runs-on: windows-latest
+    steps:
+    - name: Azure Login
+    uses: azure/login@v1
+    with:
+      creds: ${{ secrets.AZURE_CREDENTIALS }}
