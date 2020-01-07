@@ -11,14 +11,14 @@ jobs:
 #       with:
 #         creds: ${{ secrets.AZURE_CREDENTIALS }}
   theme1:
-    env:
-      TEST: Test variable
     # needs: azurelogin
     name: Theme 1
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
     - name: Check environment variables
+      env:
+        TEST: Test variable
       run: echo Env variable is $TEST
     #   env:
         # BRANCH: ${{ GitVersion_BranchName }}
