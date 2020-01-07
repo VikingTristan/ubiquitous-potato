@@ -31,8 +31,8 @@ jobs:
         node-version: 12.x
 
     - name: Install
-      run: |
-        npm ci
+      run: npm install
+
     - name: Build
       run: npm run theme1
 
