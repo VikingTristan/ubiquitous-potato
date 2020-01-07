@@ -75,4 +75,4 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az storage blob upload-batch -s dist -d \$web\feature --account-name payexdesignguide
+            az storage blob upload-batch -s dist -d \$web/feature/${{ steps.gitversion.outputs.branchName }} --account-name payexdesignguide
