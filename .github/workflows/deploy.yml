@@ -5,18 +5,9 @@ env:
   BOB: Bob is here
 
 jobs:
-  # azurelogin:
-  #   name: Azure Login
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Azure Login
-  #     uses: azure/login@v1
-  #     with:
-  #       creds: ${{ secrets.AZURE_CREDENTIALS }}
   theme1:
-    # needs: azurelogin
     name: Theme 1
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
 
