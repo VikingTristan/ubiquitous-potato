@@ -1,20 +1,19 @@
 name: Build and deploy
 on: [push]
 
-env:
-  TEST: Test variable
-
 jobs:
-  azurelogin:
-    name: Azure Login
-    runs-on: windows-latest
-    steps:
-    - name: Azure Login
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+  env:
+    TEST: Test variable
+#   azurelogin:
+#     name: Azure Login
+#     runs-on: windows-latest
+#     steps:
+#     - name: Azure Login
+#       uses: azure/login@v1
+#       with:
+#         creds: ${{ secrets.AZURE_CREDENTIALS }}
   theme1:
-    needs: azurelogin
+    # needs: azurelogin
     name: Theme 1
     runs-on: windows-latest
     steps:
