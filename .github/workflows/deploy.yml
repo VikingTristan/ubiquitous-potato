@@ -7,7 +7,7 @@ env:
 jobs:
   azurelogin:
     name: Azure Login
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - name: Azure Login
       uses: azure/login@v1
