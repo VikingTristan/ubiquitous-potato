@@ -2,7 +2,7 @@ name: Build and deploy
 on: [push]
 jobs:
   test:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - name: Hello world
       run: echo Hello world $FIRST_NAME $middle_name $Last_Name!
