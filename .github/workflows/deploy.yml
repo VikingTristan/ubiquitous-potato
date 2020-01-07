@@ -1,24 +1,22 @@
 name: Build and deploy
 on: [push]
 
-env:
-  TEST: Hello?
-  BRANCH: ${{ GitVersion_BranchName }}
-
 jobs:
-#   azurelogin:
-#     name: Azure Login
-#     runs-on: windows-latest
-#     steps:
-#     - name: Azure Login
-#       uses: azure/login@v1
-#       with:
-#         creds: ${{ secrets.AZURE_CREDENTIALS }}
+  azurelogin:
+    name: Azure Login
+    runs-on: windows-latest
+    steps:
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
   theme1:
-    # needs: azurelogin
+    needs: azurelogin
     name: Theme 1
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
     - name: Check environment variables
-      run: echo This branch is $BRANCH $TEST
+      env:
+        BRANCH: ${{ GitVersion_BranchName }}
+      run: echo This branch is $BRANCH
