@@ -2,7 +2,10 @@ name: Build and deploy
 on: [push]
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
     steps:
     - name: Hello world
       run: echo Hello world $GITHUB_REF ${FIRST_NAME} $Env:middle_name  %Last_Name%
