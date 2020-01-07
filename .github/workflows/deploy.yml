@@ -10,7 +10,7 @@ jobs:
       BOB: Bob is here
     steps:
     - name: Hello world
-      run: echo Hello world $Env:middle_name
+      run: echo Hello world $Env:BOB
 
 # jobs:
 # #   azurelogin:
