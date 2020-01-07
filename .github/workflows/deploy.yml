@@ -17,7 +17,5 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Create environment variables
-      run: |
-        GitVersion /version
-        GitVersion
+    - name: Check environment variables
+      run: echo This branch is $GitVersion_BranchName
