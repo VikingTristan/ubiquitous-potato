@@ -1,11 +1,14 @@
 name: Build and deploy
-
 on: [push]
+
+env:
+  TEST: Hello?
+  BRANCH: ${{ GitVersion_BranchName }}
 
 jobs:
 #   azurelogin:
 #     name: Azure Login
-#     runs-on: ubuntu-latest
+#     runs-on: windows-latest
 #     steps:
 #     - name: Azure Login
 #       uses: azure/login@v1
@@ -14,12 +17,8 @@ jobs:
   theme1:
     # needs: azurelogin
     name: Theme 1
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-setup-dotnet@v1
-    - uses: actions/setup-gitversion@v1.0.0
-      with: 
-        gitversion-version: 5.1.1
     - name: Check environment variables
-      run: echo GitVersion branch $GitVersion_BranchName
+      run: echo This branch is $BRANCH $TEST
