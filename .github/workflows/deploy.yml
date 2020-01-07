@@ -17,9 +17,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Check environment variables
+      run: echo Env variable is $TEST
       env:
         TEST: Test variable
-      run: echo Env variable is $TEST
     #   env:
         # BRANCH: ${{ GitVersion_BranchName }}
     #   run: echo This branch is $BRANCH
