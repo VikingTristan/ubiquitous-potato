@@ -2,7 +2,8 @@
 name: Janitor
 on:
   schedule:
-    - cron:  '*/5 * * * *'
+    # This janitor will now run every night
+    - cron:  '0 0 * * *'
 
 jobs:
   janitor:
