@@ -1,1 +1,1 @@
-echo Hello from janitor script!
+echo Janitoring away!

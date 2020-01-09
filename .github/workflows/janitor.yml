@@ -5,8 +5,8 @@ on:
     # This janitor will now run every night
     # - cron:  '0 0 * * *'
 
-    # Testing purposes
-    - cron: "*/2 * * * *"
+    # Testing purposes, runs every two minute
+    - cron: "*/5 * * * *"
 
 jobs:
   janitor:
@@ -15,6 +15,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-        git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
-      - run: echo Janitor should be cleaning now
-      - run: ./.github/scripts/janitor.sh
+          git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+          echo "Janitor doing janitor things..."
+          ./.github/scripts/janitor.sh
