@@ -7,6 +7,14 @@
     <title>test</title>
 </head>
 <body>
-    <h1>Hello</h1>
+    <h1><%= htmlWebpackPlugin.options.greetings %></h1>
+
+    <script>
+    (function(){
+        if(!window.location.href.endsWith("/")) {
+            window.location = window.location.href + "/";
+        }
+    })();
+    </script>
 </body>
 </html>

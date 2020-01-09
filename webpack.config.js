@@ -30,9 +30,12 @@ module.exports = (env, argv) => {
               }]
         },
         plugins: [
-            new HtmlWebpackPlugin({template: './src/index.html'}),
+            new HtmlWebpackPlugin({
+                template: './src/index.html',
+                greetings: `This is ${theme}`
+            }),
             new MiniCssExtractPlugin({
-                filename: "[name].css"
+                filename: "css/[name].css"
             })
         ]
     }
