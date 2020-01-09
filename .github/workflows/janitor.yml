@@ -1,0 +1,13 @@
+# This janitor cleans up feature folders where the branches have been deleted
+name: Janitor
+on:
+    schedule:
+      # * is a special character in YAML so you have to quote this string
+      - cron:  '*/5 * * * *'
+
+jobs:
+  janitor:
+    name: Janitor
+    runs-on: ubuntu-latest
+    steps:
+      run: echo Janitor should be cleaning now
