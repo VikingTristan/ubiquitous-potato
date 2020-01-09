@@ -55,31 +55,24 @@ jobs:
           echo "CommitsSinceVersionSourcePadded: ${{ steps.gitversion.outputs.commitsSinceVersionSourcePadded }}"
           echo "CommitDate: ${{ steps.gitversion.outputs.commitDate }}"
 
-      
-
-    # - name: Check environment variables
-    #   run: |
-    #     echo Env variable is $Env:BOB
-    #     echo Reference is $Env:GITHUB_REF
-
-    # - name: Set Node.js 12.x
-    #   uses: actions/setup-node@master
-    #   with:
-    #     node-version: 12.x
-
-    # - name: Install
-    #   run: npm install
-
-    # - name: Build
-    #   run: npm run theme1
-
-    # - name: Azure Login
-    #   uses: azure/login@v1
-    #   with:
-    #     creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    # - name: Azure Deploy
-    #   uses: azure/CLI@v1
-    #   with:
-    #     inlineScript: |
-    #       az storage blob upload-batch -s dist -d \$web --account-name payexdesignguide
+        - name: Set Node.js 12.x
+          uses: actions/setup-node@master
+          with:
+            node-version: 12.x
+  
+        - name: Install
+          run: npm install # <-- Node gyp fails on "npm ci" for some reason
+  
+        - name: Build
+          run: npm run theme1
+  
+        - name: Azure Login
+          uses: azure/login@v1
+          with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
+  
+        - name: Azure Deploy
+          uses: azure/CLI@v1
+          with:
+            inlineScript: |
+              az storage blob upload-batch -s dist -d \$web/v/${{ steps.gitversion.outputs.majorMinorPatch }} --account-name payexdesignguide

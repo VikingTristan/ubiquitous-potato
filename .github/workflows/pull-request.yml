@@ -12,7 +12,7 @@ jobs:
         run: |
           git fetch --tags
           git branch --create-reflog master origin/master
-          
+
       - name: Install GitVersion
         uses: gittools/actions/setup-gitversion@v0.3
         with:
@@ -54,31 +54,13 @@ jobs:
           echo "CommitsSinceVersionSourcePadded: ${{ steps.gitversion.outputs.commitsSinceVersionSourcePadded }}"
           echo "CommitDate: ${{ steps.gitversion.outputs.commitDate }}"
 
-      
+      - name: Set Node.js 12.x
+      uses: actions/setup-node@master
+      with:
+          node-version: 12.x
 
-    # - name: Check environment variables
-    #   run: |
-    #     echo Env variable is $Env:BOB
-    #     echo Reference is $Env:GITHUB_REF
+      - name: Install
+      run: npm install
 
-    # - name: Set Node.js 12.x
-    #   uses: actions/setup-node@master
-    #   with:
-    #     node-version: 12.x
-
-    # - name: Install
-    #   run: npm install
-
-    # - name: Build
-    #   run: npm run theme1
-
-    # - name: Azure Login
-    #   uses: azure/login@v1
-    #   with:
-    #     creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    # - name: Azure Deploy
-    #   uses: azure/CLI@v1
-    #   with:
-    #     inlineScript: |
-    #       az storage blob upload-batch -s dist -d \$web --account-name payexdesignguide
+      - name: Build
+      run: npm run theme1
