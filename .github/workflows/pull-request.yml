@@ -55,12 +55,12 @@ jobs:
           echo "CommitDate: ${{ steps.gitversion.outputs.commitDate }}"
 
       - name: Set Node.js 12.x
-      uses: actions/setup-node@master
-      with:
+        uses: actions/setup-node@master
+        with:
           node-version: 12.x
 
       - name: Install
-      run: npm install
+        run: npm install
 
       - name: Build
-      run: npm run theme1
+        run: npm run theme1
