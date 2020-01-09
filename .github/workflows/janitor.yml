@@ -10,4 +10,4 @@ jobs:
     name: Janitor
     runs-on: ubuntu-latest
     steps:
-      run: echo Janitor should be cleaning now
+      - run: echo Janitor should be cleaning now
