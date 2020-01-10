@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "theme1": "webpack --theme theme1",
+    "theme1:prod": "webpack --mode production --theme theme1",
     "theme2": "webpack --theme theme2"
   },
   "repository": {

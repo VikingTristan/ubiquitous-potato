@@ -64,7 +64,7 @@ jobs:
         run: npm install # <-- Node gyp fails on "npm ci" for some reason
 
       - name: Build
-        run: npm run theme1
+        run: npm run theme1:prod --env.release=true --env.basename=/v/${{ steps.gitversion.outputs.majorMinorPatch }}
 
       - name: Azure Login
         uses: azure/login@v1
@@ -75,4 +75,4 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az storage blob upload-batch -s dist -d \$web/v/${{ steps.gitversion.outputs.majorMinorPatch }} --account-name payexdesignguide
+            az storage blob upload-batch -s dist -d \$web --account-name payexdesignguide
