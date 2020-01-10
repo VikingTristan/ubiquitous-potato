@@ -14,6 +14,7 @@ module.exports = (env, argv) => {
 
     const basename = env && env.basename ? `/${env.basename}/` : "/";
     const isRelease = env && env.release;
+    const onEndArchive = [];
 
     console.log("Is release?", isRelease);
 
@@ -63,6 +64,10 @@ module.exports = (env, argv) => {
                 baseurl
             })
         )
+        onEndArchive.push({
+            source: `./dist${basename}`,
+            destination: `./dist/${basename}release.zip`
+        })
     }
 
     config.plugins.push(
@@ -74,15 +79,7 @@ module.exports = (env, argv) => {
             ],
             onEnd: [
                 {
-                    copy: [
-                        {
-                            source: `./dist/**.*`,
-                            destination: `./dist${basename}/test/`
-                        }
-                    ],
-                    mkdir: [`./dist${basename}release`],
-                    // archive: onEndArchive,
-                    delete: ["./dist/temp"]
+                    archive: onEndArchive,
                 }
             ]
         })
