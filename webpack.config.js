@@ -10,7 +10,7 @@ module.exports = (env, argv) => {
     
 
     const theme = argv.theme || "theme1";
-    const baseurl = env.baseurl;
+    const baseurl = env && env.baseurl ? env.baseurl : "";
 
     const basename = env && env.basename ? `/${env.basename}/` : "/";
     const isRelease = env && env.release;
