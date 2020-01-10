@@ -57,7 +57,7 @@ module.exports = (env, argv) => {
         config.plugins.push(
             new HtmlWebpackPlugin({
                 filename: `../../index.html`,
-                template: "./src/rootindex.html",
+                template: "./src/rootIndex.html",
                 title: `${theme}`,
                 basename,
                 baseurl
