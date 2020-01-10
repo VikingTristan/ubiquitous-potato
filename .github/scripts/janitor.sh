@@ -1,1 +1,1 @@
-echo Janitoring away!
+echo "Janitoring away!"
