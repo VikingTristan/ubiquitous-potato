@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
-<body>
-    <h1><%= htmlWebpackPlugin.options.greetings %></h1>
 
-    <h2>An app should be running here</h2>
+<body>
+    <h1>I should just redirect to newest version</h1>
 
     <script>
-    (function(){
-        if(!window.location.href.endsWith("/")) {
-            window.location = window.location.href + "/"; 
-        }
-    })();
+        (function () {
+            window.location = "<%= htmlWebpackPlugin.options.baseurl %>" + "<%= htmlWebpackPlugin.options.basename %>";
+        })();
     </script>
 </body>
+
 </html>
