@@ -1,6 +1,7 @@
 const path = require("path");
 const levelsToRoot = require("./tools/levels-to-root");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FileManagerPlugin = require("filemanager-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = (env, argv) => {
@@ -9,6 +10,7 @@ module.exports = (env, argv) => {
     
 
     const theme = argv.theme || "theme1";
+    const baseurl = env.baseurl;
 
     const basename = env && env.basename ? `/${env.basename}/` : "/";
     const isRelease = env && env.release;
@@ -20,7 +22,7 @@ module.exports = (env, argv) => {
     const config = {
         entry: `./src/${theme}.js`,
         output: {
-            path: path.resolve(__dirname, "dist"),
+            path: path.resolve(__dirname, `dist${basename}`),
             filename: "[name].js"
         },
         resolve: {
@@ -44,10 +46,6 @@ module.exports = (env, argv) => {
                 greetings: `This is ${theme}`,
                 title: theme
             }),
-            new HtmlWebpackPlugin({
-                filename: "page.html",
-                template: './src/page.html',
-            }),
             new MiniCssExtractPlugin({
                 filename: "css/[name].css"
             })
@@ -56,17 +54,39 @@ module.exports = (env, argv) => {
 
     if (isRelease) {
         const rootPath = levelsToRoot(basename);
-        // config.plugins.push(
-        //     new HtmlWebpackPlugin({
-        //         filename: `page.html`,
-        //         template: "./src/page.html",
-        //         basename
-        //     })
-        // );
+        config.plugins.push(
+            new HtmlWebpackPlugin({
+                filename: `${rootPath}index.html`,
+                template: "./src/rootindex.html",
+                title: `${theme}`,
+                basename,
+                baseurl
+            })
+        )
     }
 
-    console.log("config: ", config.plugins);
-    
+    config.plugins.push(
+        new FileManagerPlugin({
+            onStart: [
+                {
+                    delete: ["./dist"]
+                }
+            ],
+            onEnd: [
+                {
+                    copy: [
+                        {
+                            source: `./dist/**.*`,
+                            destination: `./dist${basename}/test/`
+                        }
+                    ],
+                    mkdir: [`./dist${basename}release`],
+                    // archive: onEndArchive,
+                    delete: ["./dist/temp"]
+                }
+            ]
+        })
+    );
 
     return config
 }
