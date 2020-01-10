@@ -64,7 +64,7 @@ jobs:
         run: npm install # <-- Node gyp fails on "npm ci" for some reason
 
       - name: Build
-        run: npm run theme1:prod -- --env.release=true --env.basename=/v/${{ steps.gitversion.outputs.majorMinorPatch }} --env.baseurl="https://payexdesignguide.z16.web.core.windows.net/"
+        run: npm run theme1:prod -- --env.release=true --env.basename="v/${{ steps.gitversion.outputs.majorMinorPatch }}" --env.baseurl="https://payexdesignguide.z16.web.core.windows.net/"
 
       - name: Azure Login
         uses: azure/login@v1
