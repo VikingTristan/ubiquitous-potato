@@ -13,12 +13,14 @@ module.exports = (env, argv) => {
     const baseurl = env && env.baseurl ? env.baseurl : "";
 
     const basename = env && env.basename ? `/${env.basename}/` : "/";
+    const rootPath = env && env.rootpath ? env.rootpath : "../../"
     const isRelease = env && env.release;
     const onEndArchive = [];
 
     console.log("Is release?", isRelease);
 
     console.log("Basename? ", basename);
+    console.log("rootPath? ", rootpath);
 
     const config = {
         entry: `./src/${theme}.js`,
@@ -54,7 +56,6 @@ module.exports = (env, argv) => {
     };
 
     if (isRelease) {
-        const rootPath = levelsToRoot(basename);
         config.plugins.push(
             new HtmlWebpackPlugin({
                 filename: `${rootPath}index.html`,

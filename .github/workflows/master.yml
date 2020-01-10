@@ -23,7 +23,8 @@ jobs:
         id: gitversion # step id used as reference for output values
         uses: gittools/actions/execute-gitversion@v0.3
       
-      - run: |
+      - name: Print environment variables
+        run: |
           echo "Major: ${{ steps.gitversion.outputs.major }}"
           echo "Minor: ${{ steps.gitversion.outputs.minor }}"
           echo "Patch: ${{ steps.gitversion.outputs.patch }}"
@@ -64,7 +65,7 @@ jobs:
         run: npm install # <-- Node gyp fails on "npm ci" for some reason
 
       - name: Build
-        run: npm run theme1:prod -- --env.release=true --env.basename="v/${{ steps.gitversion.outputs.majorMinorPatch }}" --env.baseurl="https://payexdesignguide.z16.web.core.windows.net/"
+        run: npm run theme1:prod -- --env.release=true --env.basename="v/${{ steps.gitversion.outputs.majorMinorPatch }}" --env.baseurl="https://payexdesignguide.z16.web.core.windows.net/" --env.rootpath="${{ GITHUB_WORKSPACE }}"
 
       - name: Azure Login
         uses: azure/login@v1
