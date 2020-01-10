@@ -3,10 +3,10 @@ name: Janitor
 on:
   schedule:
     # This janitor will now run every night
-    # - cron:  '0 0 * * *'
+    - cron:  '0 0 * * *'
 
     # Testing purposes, runs every two minute
-    - cron: "*/5 * * * *"
+    # - cron: "*/5 * * * *"
 
 jobs:
   janitor:
@@ -17,4 +17,5 @@ jobs:
       - run: |
           git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
           echo "Janitor doing janitor things..."
+          chmod +x ./.github/scripts/janitor.sh
           ./.github/scripts/janitor.sh

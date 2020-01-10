@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>test</title>
+    <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 <body>
     <h1><%= htmlWebpackPlugin.options.greetings %></h1>
+
+    <a href="/page">Go to page</a>
 
     <script>
     (function(){
