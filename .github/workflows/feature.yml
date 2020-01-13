@@ -71,7 +71,7 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - name: Install
+      - name: Install 
         run: npm install
 
       - name: Build
