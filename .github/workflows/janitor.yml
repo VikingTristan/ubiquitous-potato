@@ -1,12 +1,9 @@
 # This janitor cleans up feature folders where the branches have been deleted
 name: Janitor
 on:
-  schedule:
-    # This janitor will now run every night
-    # - cron:  '0 0 * * *'
-
-    # Testing purposes, runs every two minute
-    - cron: "*/5 * * * *"
+  delete:
+    branches:
+      - "feature/**"
 
 jobs:
   janitor:
