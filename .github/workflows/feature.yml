@@ -73,7 +73,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install
-        if: steps.cache.outputs.cache-hit != "true"
+        if: steps.cache.outputs.cache-hit
         run: npm install
 
       - name: Build
