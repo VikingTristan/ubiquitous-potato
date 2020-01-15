@@ -65,7 +65,7 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build:prod -- --env.baseUrl="https://payexdesignguide.z16.web.core.windows.net" --env.basename="${{ steps.gitversion.outputs.branchName }}" --env.semver=${{ steps.gitversion.outputs.semVer }}--env.info_version=${{ steps.gitversion.outputs.informationalVersion }}
+        run: npm run build:prod -- --env.baseUrl="https://payexdesignguide.z16.web.core.windows.net" --env.semver=${{ steps.gitversion.outputs.semVer }}--env.info_version=${{ steps.gitversion.outputs.informationalVersion }}
 
       - name: Azure Login
         uses: azure/login@v1
