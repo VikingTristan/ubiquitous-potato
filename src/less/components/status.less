@@ -1,0 +1,62 @@
+.status {
+    display: flex;
+    position: relative;
+    padding-left: @status-padding-left;
+    align-items: center;
+
+    &:before {
+        content: "";
+        position: absolute;
+        width: @status-size;
+        height: @status-size;
+        border-radius: 50%;
+        display: block;
+        left: 0;
+        top: 50%;
+        transform: translateY(-55%);
+
+        .status-default& {
+            background-color: @brand-bg-gray;
+        }
+
+        .status-neutral& {
+            background-color: @brand-info;
+        }
+
+        .status-success& {
+            background-color: @brand-success;
+        }
+
+        .status-warning& {
+            background-color: @brand-warning;
+        }
+
+        .status-danger& {
+            background-color: @brand-error;
+        }
+    }
+
+    h1& {
+        .status-size(@status-size * 2.5, @status-padding);
+    }
+
+    h2& {
+        .status-size(@status-size * 2, @status-padding);
+    }
+
+    h3& {
+        .status-size(@status-size * 1.75, @status-padding-head);
+    }
+
+    h4& {
+        .status-size(@status-size * 1.5, @status-padding-head);
+    }
+
+    h5& {
+        .status-size(@status-size * 1.25, @status-padding-head);
+    }
+
+    h6& {
+        .status-size(@status-size, @base-padding);
+    }
+}

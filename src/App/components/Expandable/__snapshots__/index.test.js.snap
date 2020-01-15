@@ -1,0 +1,207 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: Expandable ExpandablePlaceholder renders 1`] = `
+<div
+  className="expandable"
+>
+  <button
+    className="expandable-header"
+  >
+    <span>
+      Placeholder title
+    </span>
+    <small>
+      Placeholder subtitle
+    </small>
+  </button>
+  <div
+    className="expandable-body"
+  >
+    <p>
+      Placeholder text
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Component: Expandable prints an expandable component when items is provided but is invalid 1`] = `
+<Expandable
+  items="wrong"
+>
+  <ExpandablePlaceholder>
+    <div
+      className="expandable"
+    >
+      <button
+        className="expandable-header"
+      >
+        <span>
+          Placeholder title
+        </span>
+        <small>
+          Placeholder subtitle
+        </small>
+      </button>
+      <div
+        className="expandable-body"
+      >
+        <p>
+          Placeholder text
+        </p>
+      </div>
+    </div>
+  </ExpandablePlaceholder>
+</Expandable>
+`;
+
+exports[`Component: Expandable returns a number of expandables matching the length of items 1`] = `
+<Expandable
+  items={
+    Array [
+      Object {
+        "content": "My accordion content",
+        "title": "Foo",
+      },
+      Object {
+        "content": "My accordion content",
+        "title": "Bar",
+      },
+      Object {
+        "content": "My accordion content",
+        "title": "Baz",
+      },
+    ]
+  }
+>
+  <div
+    className="expandable"
+    key="0"
+  >
+    
+
+    <button
+      aria-expanded="false"
+      className="expandable-header"
+      type="button"
+    >
+      
+
+      <span
+        className="expandable-headline"
+      >
+        Foo
+      </span>
+      
+
+      <small
+        className="expandable-subtitle"
+      />
+      
+
+    </button>
+    <div
+      className="expandable-body"
+    >
+      <p>
+        My accordion content
+      </p>
+    </div>
+  </div>
+  <div
+    className="expandable"
+    key="1"
+  >
+    
+
+    <button
+      aria-expanded="false"
+      className="expandable-header"
+      type="button"
+    >
+      
+
+      <span
+        className="expandable-headline"
+      >
+        Bar
+      </span>
+      
+
+      <small
+        className="expandable-subtitle"
+      />
+      
+
+    </button>
+    <div
+      className="expandable-body"
+    >
+      <p>
+        My accordion content
+      </p>
+    </div>
+  </div>
+  <div
+    className="expandable"
+    key="2"
+  >
+    
+
+    <button
+      aria-expanded="false"
+      className="expandable-header"
+      type="button"
+    >
+      
+
+      <span
+        className="expandable-headline"
+      >
+        Baz
+      </span>
+      
+
+      <small
+        className="expandable-subtitle"
+      />
+      
+
+    </button>
+    <div
+      className="expandable-body"
+    >
+      <p>
+        My accordion content
+      </p>
+    </div>
+  </div>
+</Expandable>
+`;
+
+exports[`Component: Expandable returns an expandable component when no items are provided 1`] = `
+<Expandable>
+  <ExpandablePlaceholder>
+    <div
+      className="expandable"
+    >
+      <button
+        className="expandable-header"
+      >
+        <span>
+          Placeholder title
+        </span>
+        <small>
+          Placeholder subtitle
+        </small>
+      </button>
+      <div
+        className="expandable-body"
+      >
+        <p>
+          Placeholder text
+        </p>
+      </div>
+    </div>
+  </ExpandablePlaceholder>
+</Expandable>
+`;

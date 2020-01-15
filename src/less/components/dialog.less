@@ -1,0 +1,106 @@
+.dialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: @zindex-dialog-backdrop;
+    background: @dialog-backdrop-bg;
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    > section {
+        position: relative;
+        max-width: 500px;
+
+        .dialog-header,
+        header {
+            display: flex;
+            padding: 1rem 1.5rem;
+            align-items: center;
+            background: @white;
+            border-bottom: @dialog-border;
+
+            /* stylelint-disable selector-list-comma-newline-after */
+            h1, h2, h3, h4, h5, h6,
+            .h1, .h2, .h3, .h4, .h5, .h6 {
+                margin-top: 0;
+                margin-bottom: 0;
+                flex-grow: 1;
+            }
+            /* stylelint-enable selector-list-comma-newline-after */
+
+            .dialog-close {
+                display: inline-flex;
+                align-items: center;
+                position: relative;
+                font-weight: normal;
+                font-family: @brand-headline;
+                text-align: center;
+                text-decoration: none;
+                vertical-align: middle;
+                touch-action: manipulation;
+                cursor: pointer;
+                line-height: 1rem;
+                border: 1px solid transparent;
+                white-space: nowrap;
+                user-select: none;
+                background-color: transparent;
+
+                /* padding-top-bottom, padding-left-right, font-size, line-height */
+                .button-size(0.5rem; 0.5rem; 1rem; 1rem; @btn-border-radius-base;);
+
+                margin-right: -0.5rem;
+
+                &:hover,
+                &:focus,
+                &.focus {
+                    color: @brand-secondary-dark-2;
+                    text-decoration: none;
+                }
+
+                &[active],
+                &:active,
+                &.active {
+                    outline: 0;
+                    background-image: none;
+                    box-shadow: none;
+
+                    &:focus,
+                    &.focus {
+                        box-shadow: none;
+                    }
+                }
+            }
+        }
+
+        .dialog-body {
+            background: @dialog-content-bg;
+            padding: 2rem 1.5rem;
+        }
+
+        .dialog-footer,
+        footer {
+            background: @white;
+            border-top: @dialog-border;
+            padding: 1rem 1.5rem;
+            margin: 0;
+            display: flex;
+            justify-content: flex-end;
+
+            > * {
+                margin: 0 0.25rem;
+            }
+        }
+    }
+}
+
+.dialog-open {
+    overflow: hidden;
+
+    .dialog {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+}

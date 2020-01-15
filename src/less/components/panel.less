@@ -1,0 +1,136 @@
+.panel {
+    margin-top: @base-margin;
+    margin-bottom: @base-margin;
+    background-color: @panel-background-color;
+
+    /* Contextual variations */
+    &.panel-default {
+        .panel-variant(@white, @panel-default-border-color);
+    }
+
+    &.panel-brand {
+        .panel-variant(@white, @brand-primary);
+    }
+
+    &.panel-muted {
+        .panel-variant(@white, @panel-default-border-color);
+
+        .panel-body,
+        > footer {
+            background-color: @white;
+        }
+    }
+
+    &.panel-bottomless {
+        .panel-body {
+            margin-bottom: 0;
+        }
+    }
+
+    &.panel-no-padding {
+        .panel-body {
+            margin: 0;
+            padding: 0;
+
+            > .panel-heading {
+                margin: 0;
+            }
+        }
+    }
+
+    &.panel-half-padding {
+        .panel-body {
+            margin: 0;
+            padding: 7px 15px;
+
+            > .panel-heading {
+                margin: -7px -15px 7px -15px;
+            }
+        }
+    }
+
+    /* Panel contents */
+    .panel-body {
+        background-color: @white;
+        padding: @panel-body-padding;
+
+        > .panel-heading {
+            margin: -15px -30px 15px -30px;
+        }
+    }
+
+    .panel-table {
+        border-bottom: 1px solid @table-border-color;
+
+        .table {
+            margin-bottom: 0;
+
+            thead,
+            tbody {
+                tr {
+                    > :first-child {
+                        padding-left: @base-padding-xl;
+                    }
+
+                    > :last-child {
+                        padding-right: @base-padding-xl;
+                    }
+                }
+            }
+        }
+
+        & + footer {
+            border-top: 0;
+        }
+    }
+
+    // Optional heading
+    > header {
+        padding: @base-padding;
+        padding-left: @base-padding-xl;
+        border-bottom: 1px solid @panel-default-border-color;
+    }
+
+    .panel-title {
+        display: inline-block;
+        margin-top: 0;
+        margin-bottom: 0;
+
+        > a,
+        > small,
+        > .small,
+        > small > a,
+        > .small > a {
+            color: inherit;
+        }
+    }
+
+    .panel-sub-title {
+        font-weight: normal;
+        font-style: italic;
+        display: block;
+        margin-top: 0;
+        margin-bottom: 0;
+
+        > a,
+        > small,
+        > .small,
+        > small > a,
+        > .small > a {
+            color: inherit;
+        }
+    }
+
+    // Optional footer (stays gray in every modifier class)
+    > footer {
+        background-color: @white;
+        padding: @panel-footer-padding;
+        border-top: 1px solid @panel-default-border-color;
+    }
+
+    @media (max-width: @screen-xs-max) {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+}
+

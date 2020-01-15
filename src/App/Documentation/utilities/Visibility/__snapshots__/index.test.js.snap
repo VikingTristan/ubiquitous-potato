@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Utilities: Visibility Intro renders 1`] = `
+<Fragment>
+  <p>
+    Set the 
+    <Property
+      value="visibility"
+    />
+     of elements with our visibility utilities. These do not modify the 
+    <Property
+      value="display"
+    />
+     value at all and are helpful for hiding content from most users, but still keeping them for screen readers.
+  </p>
+  <p>
+    Apply 
+    <Property
+      value=".visible"
+    />
+     or 
+    <Property
+      value=".invisible"
+    />
+     as needed.
+  </p>
+  <ComponentPreview
+    codeFigure={true}
+    language="html"
+  >
+    <div
+      className="visible"
+    >
+      ...
+    </div>
+    <div
+      className="invisible"
+    >
+      ...
+    </div>
+  </ComponentPreview>
+  <ComponentPreview
+    codeFigure={true}
+    language="css"
+  >
+    
+                .visible {
+                    visibility: visible !important;
+                }
+                .invisible {
+                    visibility: hidden !important;
+                }
+            
+  </ComponentPreview>
+</Fragment>
+`;
+
+exports[`Utilities: Visibility renders 1`] = `
+<DocContainer>
+  <p
+    className="lead"
+  >
+    Control the visibility, without modifying the display, of elements with visibility utilities.
+  </p>
+  <Intro />
+</DocContainer>
+`;

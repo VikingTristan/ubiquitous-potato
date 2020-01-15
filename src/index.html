@@ -7,16 +7,27 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 <body>
-    <h1><%= htmlWebpackPlugin.options.greetings %></h1>
-
-    <h2>An app should be running here</h2>
-
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-3440932-20"></script>
     <script>
-    (function(){
-        if(!window.location.href.endsWith("/")) {
-            window.location = window.location.href + "/"; 
-        }
-    })();
-    </script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag("js", new Date());
+        gtag("config", "UA-3440932-20");
+    </script> -->
+    <noscript>
+        <div class="container">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h2>Welcome to the <%= htmlWebpackPlugin.options.title %></h2>
+                        <p>You need to <b>enable javascript</b> to use this site</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </noscript>
+    <div id="designguide"></div>
+    <script>window.stopDg=true</script>
 </body>
 </html>
