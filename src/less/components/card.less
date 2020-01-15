@@ -1,0 +1,128 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 1rem;
+
+    header {
+        padding: 1rem 1.5rem 0;
+
+        /* stylelint-disable selector-list-comma-newline-after */
+        h1, h2, h3, h4, h5, h6,
+        .h1, .h2, .h3, .h4, .h5, .h6 {
+            margin: 0;
+        }
+        /* stylelint-enable selector-list-comma-newline-after */
+
+        a {
+            text-decoration: none;
+        }
+    }
+
+    &.card-primary {
+        background-color: @brand-bg-1;
+
+        .card-header {
+            position: relative;
+            border-top: 7px solid @brand-primary-bright;
+
+            * {
+                color: @brand-secondary;
+            }
+
+            &:after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 1.6rem;
+                width: 1.2rem;
+                height: 0.6rem;
+                background-color: @brand-primary-bright;
+                clip-path: polygon(100% 0, 0 0, 50% 100%);
+            }
+
+            .media {
+                margin: 0;
+                color: @black;
+            }
+        }
+    }
+
+    &.card-secondary {
+        background-color: @brand-bg-2;
+        position: relative;
+
+        .card-header {
+            position: relative;
+            border-top: 7px solid @brand-accent;
+
+            * {
+                color: @brand-secondary;
+            }
+
+            &:after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 1.6rem;
+                width: 1.2rem;
+                height: 0.6rem;
+                background-color: @brand-accent;
+                clip-path: polygon(100% 0, 0 0, 50% 100%);
+            }
+        }
+    }
+
+    &.card-plain {
+        background-color: @light-gray;
+
+        .card-header {
+            * {
+                color: @brand-secondary;
+            }
+        }
+    }
+
+    .card-body {
+        padding: 1.5rem;
+        flex: 1 1 auto;
+
+        /* stylelint-disable selector-list-comma-newline-after */
+        h1, h2, h3, h4, h5, h6,
+        .h1, .h2, .h3, .h4, .h5, .h6 {
+            margin: @base-margin 0;
+
+            & a {
+                text-decoration: none;
+                color: @brand-secondary;
+            }
+        }
+        /* stylelint-enable selector-list-comma-newline-after */
+    }
+
+    .card-footer {
+        padding: 1rem 1.5rem;
+        background: rgba(0, 0, 0, 0.03);
+
+        .footer-text {
+            p {
+                margin: @base-margin-xs 0;
+            }
+        }
+
+        .footer-link {
+            text-align: center;
+            font-size: 80%;
+        }
+    }
+
+    .card-img {
+        height: @card-image-height;
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+}

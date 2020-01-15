@@ -1,0 +1,615 @@
+/* ==========================================================================
+ *
+ * Table of Contents:
+ *
+ *  CORE
+ * ===============
+ *  1. Colors
+ *  2. Global
+ *  3. Grid
+ *  4. Tables
+ *  5. Typography
+ *
+ *  COMPONENTS
+ * ===============
+ *  6. Action List
+ *  7. Badge
+ *  8. Button
+ *  9. Card
+ * 10. Code Tags
+ * 11. Datepicker
+ * 12. Dialog
+ * 13. Form
+ * 14. Nav
+ * 15. Pagination
+ * 16. Panel
+ * 17. Sheet
+ * 18. Status
+ * 19. Steps
+ * 20. Tabs
+ * 21. Toast
+ * 22. Topbar
+ */
+
+/* ==========================================================================
+ *
+ * CORE
+ *
+ * ==========================================================================
+ */
+
+/*
+ * 1. Colors
+ * ==========================================================================
+ */
+
+/* Brand */
+// @orange-medium:                             #ff6100; // Not used
+// @orange-light:                              #ff9900; // Not used
+// @orange-bright:                             #ffcc00; // Replaced by @brand-primary-bright
+// @green:                                     #82b236; // Not used
+// TODO: These "color" specific variables should be replaced as they are only used by badge which will be reworked
+@blue:                                      #00bcdf;
+// @blue-light:                                #a2c9ce; // Not used
+@blue-bright:                               #d7e6e9;
+// @teal:                                      #4893a0; // Not used
+// @blue-bright-alt:                           #a3c9cf; // Not used
+// @red-medium:                                #dd3300; // Not used
+
+/* Alerts */
+// @brand-success:                             #477d17;
+// @brand-success-light:                       #f2f7eb;
+// @brand-warning:                             #ff9900;
+// @brand-warning-light:                       #fffae5;
+// @brand-error-border:                        #f1bbb9;
+// @brand-error:                               #b24843;
+// @brand-error-light:                         #fceeed;
+// @brand-info:                                #2c7a8f;
+// @brand-info-light:                          #f0f9fb;
+
+
+/* BRAND MANAGER COLORS (NOT SHOWCASED ACORN, BUT SOME ARE USED) */
+
+/* Main Colors */
+// @orange-main:                               #ee7023; // Not used
+// @orange-headline:                           #f35b1c; // WCAG // Not used
+// @turquoise:                                 #31a3ae;
+// @turquoise-links:                           #257886; // WCAG
+@yellow:                                    #fdc129;
+// @lilac:                                     #c5569a; // Not used
+@blue:                                      #5b8ad6;
+// @brown:                                     #512b2b; // WCAG // Replaced by @brand-secondary
+
+@red:                                        #c5131c; // New
+
+/* Gradient */
+// @gradient-orange:                           #fa7f25; // Not used
+// @gradient-yellow:                           #fdbe13; // Not used
+
+/* END BRAND MANAGER COLORS */
+
+/* Border colors */
+@dialog-border:                             1px solid @light-gray;
+@checkbox-border-color:                     @list-gray;
+
+@color-muted:                               fade(@text-color, 75%);
+@color-muted-hover:                         fade(@text-color, 85%);
+@link-color:                                @brand-accent-links;
+@default-box-shadow:                        0 0 20px 0 rgba(81, 43, 43, 0.12);
+@small-color:                               @text-gray;
+@footer-small-color:                        @list-gray;
+@mark-background:                           rgba(0, 0, 0, 0.1);
+@text-muted:                                fade(@text-color, 75%);
+
+/* Text color list */
+/* stylelint-disable indentation */
+@color-list: {
+                                            default: @text-color;
+                                            black: @black;
+                                            white: @white;
+                                            brand: @brand-primary;
+                                            success: @brand-success;
+                                            neutral: @brand-info;
+                                            warning: @brand-warning;
+                                            danger: @brand-error;
+                                            muted: @color-muted;
+}
+
+/* Background color list */
+@bg-color-list: {
+                                            white: @white;
+                                            success: @brand-success-light;
+                                            neutral: @brand-info-light;
+                                            warning: @brand-warning-light;
+                                            danger: @brand-error-light;
+                                            variant-1: @brand-bg-1;
+                                            variant-2: @brand-bg-2;
+                                            variant-3: @brand-bg-3;
+                                            variant-4: @brand-bg-4;
+                                            gray: @brand-bg-gray;
+}
+/* stylelint-enable */
+
+/* Border colors */
+@action-list-shadow:                        0 3px 5px 0 rgba(0, 0, 0, 0.25);
+
+/*
+* 2. Global
+* ==========================================================================
+*/
+
+@spacer:                                    1rem; /* Default */
+
+/* stylelint-disable indentation */
+@spacers: {
+                                            0: 0;
+                                            1: (@spacer * 0.25);
+                                            2: (@spacer * 0.5);
+                                            3: @spacer;
+                                            4: (@spacer * 1.5);
+                                            5: (@spacer * 3);
+}
+
+@sizes: {
+                                            25: 25%;
+                                            50: 50%;
+                                            75: 75%;
+                                            100: 100%;
+                                            auto: auto;
+}
+/* stylelint-enable indentation */
+
+/* Margin */
+@base-margin:                               @spacer;
+@base-margin-sm:                            @base-margin / 2;
+@base-margin-xs:                            @base-margin / 4;
+@base-margin-lg:                            @base-margin * 1.5;
+@base-margin-xl:                            @base-margin * 2;
+
+/* Padding */
+@base-padding:                              @spacer;
+@base-padding-sm:                           @base-padding / 2;
+@base-padding-xs:                           @base-padding / 4;
+@base-padding-lg:                           @base-padding * 1.5;
+@base-padding-xl:                           @base-padding * 2;
+
+/* Body */
+@body-bg:                                   @white;
+@text-color:                                @black;
+
+/* Cursor */
+@cursor-disabled:                           not-allowed;
+
+/* Borders */
+@border-width:                              1px;
+@border-color:                              @brand-secondary-light-3;
+
+@border-radius-base:                        2px;
+
+@box-border:                                1px solid @brand-bg-gray;
+@box-shadow-bottom:                         0 3px 1px -1px @brand-bg-gray;
+
+
+/* Z-index master list */
+@zindex-steps-line:                         5;
+@zindex-steps-circle:                       10;
+@zindex-steps-icon:                         15;
+@zindex-tabs:                               100;
+@zindex-tabs-arrow:                         101;
+@zindex-action-list-anchor:                 500;
+@zindex-action-list:                        501;
+@zindex-nav-submenu:                        520;
+@zindex-datepicker:                         530;
+@zindex-topbar:                             550;
+@zindex-dialog-backdrop:                    1040;
+@zindex-dialog:                             1050;
+@zindex-modal-backdrop:                     1060;
+@zindex-modal:                              1070;
+@zindex-topbar-nav:                         2000;
+@zindex-sheet-backdrop:                     3000;
+@zindex-sheet:                              3100;
+@zindex-tooltip:                            9001;
+@zindex-toast:                              10000;
+
+/*
+ * 3. Grid
+ * ==========================================================================
+ */
+
+@grid-columns:                              12;
+
+/* Padding between columns. Gets divided in half for the left and right. */
+@grid-gutter-width:                         30px;
+
+
+/* stylelint-disable indentation */
+@grid-breakpoints: {
+                                            xs: 0;
+                                            sm: 576px;
+                                            md: 768px;
+                                            lg: 992px;
+                                            xl: 1200px;
+                                            xxl: 1600px;
+}
+
+@container-max-widths:                      540px,
+                                            720px,
+                                            960px,
+                                            1140px,
+                                            1460px;
+/* stylelint-enable */
+
+/* Media queries breakpoints
+ * The maximum value is calculated as the minimum of the next one less 0.02px
+ * to work around the limitations of `min-` and `max-` prefixes and viewports with fractional widths.
+ * See https://www.w3.org/TR/mediaqueries-4/#mq-min-max
+ * Uses 0.02px rather than 0.01px to work around a current rounding bug in Safari.
+ * See https://bugs.webkit.org/show_bug.cgi?id=178261
+ */
+
+@screen-xs-min:                             @grid-breakpoints[sm];
+@screen-sm-min:                             @grid-breakpoints[md];
+@screen-md-min:                             @grid-breakpoints[lg];
+@screen-lg-min:                             @grid-breakpoints[xl];
+@screen-xl-min:                             @grid-breakpoints[xxl];
+
+@screen-xs-max:                             (@screen-sm-min - 0.02);
+@screen-sm-max:                             (@screen-md-min - 0.02);
+@screen-md-max:                             (@screen-lg-min - 0.02);
+@screen-lg-max:                             (@screen-xl-min - 0.02);
+
+/*
+ * 4. Tables
+ * ==========================================================================
+ */
+
+/* Colors */
+@table-bg:                                  transparent;
+@table-header-color:                        @brand-secondary;
+@table-text-color:                          @list-gray;
+@table-border-color:                        @border-color;
+@table-stripe-color:                        @light-gray;
+@table-collapse-content-color:              @list-gray;
+@table-collapse-border-color:               @border-color;
+
+/* Dimensions */
+@table-cell-padding:                        1rem 1.2rem;
+@table-cell-condensed-padding:              0.5rem 0.6rem;
+@table-collapse-content-padding:            10px 20px 10px 20px;
+@table-button-padding:                      @base-padding-xs / 2 @base-padding-xs;
+@table-description-padding:                 @base-padding * 0.625;
+
+@table-margin-bottom:                       0.6rem;
+@table-collpase-nested-margin:              -10px -20px -10px -20px;
+
+@table-line-height:                         1.4rem;
+
+/* Animations */
+@table-collapse-duration:                   0.25s;
+
+/*
+ * 5. Typography
+ * ==========================================================================
+ */
+
+/* fonts */
+
+@font-stack:                                "Arial", sans-serif;
+
+@blockquote-border-color:                   @list-gray;
+@blockquote-small-color:                    @list-gray;
+
+/* Font Size */
+@base-font-size:                            1rem;
+@font-size-large:                           (@base-font-size * 1.25);
+@font-size-small:                           (@base-font-size * 0.875);
+
+/* Font Weight */
+@font-weight-light:                         300;
+@font-weight-normal:                        400;
+@font-weight-bold:                          700;
+
+@font-weight-base:                          @font-weight-normal;
+
+@line-height-base:                          1.5;
+@line-height-large:                         1.5;
+@line-height-small:                         1.5;
+
+
+/* Temporary for backwards compatibility */
+@line-height-computed:                      @base-font-size * @line-height-base;
+
+@headings-font-family:                      inherit;
+@headings-color:                            @brand-secondary;
+
+/* Paragraphs */
+@paragraph-margin-bottom:                   @base-margin;
+
+/* Etc */
+@small-font-size:                           80%;
+
+@blockquote-font-size:                      (@base-font-size * 1.25);
+
+@hr-border-color:                           rgba(0, 0, 0, 0.1);
+@hr-border-width:                           @border-width;
+
+@mark-padding:                              0.2rem;
+
+@dt-font-weight:                            @font-weight-bold;
+
+@list-inline-padding:                       @base-padding-sm;
+
+@scrollbar-size:                            17px;
+
+/* ==========================================================================
+ *
+ * COMPONENTS
+ *
+ * ==========================================================================
+ */
+
+/*
+ * 6. Action List
+ * ==========================================================================
+ */
+
+@action-menu-anchor-padding:                round(@base-padding / 3, 1);
+
+/*
+ * 7. Badge
+ * ==========================================================================
+ */
+
+/* stylelint-disable */
+@badge-list: {
+                                            default: @brand-primary;
+                                            inactive: @list-gray;
+                                            warning: @brand-error;
+}
+/* stylelint-enable */
+
+
+/*
+ * 8. Button
+ * ==========================================================================
+ */
+
+@btn-font-size:                             1.8rem;
+@btn-min-width:                             112px;
+
+@btn-font-size-sm:                          1.6rem;
+@btn-font-size-xs:                          1.2rem;
+
+@btn-border-radius-base:                    @border-radius-base;
+@btn-border-radius-large:                   @border-radius-base;
+@btn-border-radius-small:                   @border-radius-base;
+
+/*
+ * 9. Card
+ * ==========================================================================
+ */
+
+@card-width:                                18rem;
+@card-image-height:                         10rem;
+
+@card-margin:                               0 @base-margin @base-margin;
+@card-margin-top:                           @base-margin-sm + @base-margin-xs;
+
+/*
+ * 10. Code Tags
+ * ==========================================================================
+ */
+
+@code-tags-padding: 2px 6px;
+
+
+@code-tags-border-radius: 4px;
+
+/*
+ * 11. Datepicker
+ * ==========================================================================
+ */
+
+@datepicker-box-shadow:                     @default-box-shadow;
+@datepicker-background-color:               @white;
+@datepicker-highlight-background:           @brand-primary;
+@datepicker-highlight-color:                @white;
+@datepicker-weekday-color:                  @brand-primary;
+@datepicker-hover-color:                    @light-gray;
+
+@datepicker-rd-padding:                     round(@base-padding / 3, 1);
+
+/*
+ * 12. Dialog
+ * ==========================================================================
+ */
+
+/* Colors */
+@dialog-background-color:                   transparent;
+@dialog-content-bg:                         @white;
+@dialog-backdrop-bg:                        fade(@black, 50%);
+
+/*
+ * 13. Form
+ * ==========================================================================
+ */
+@input-padding-y:                           0.375rem;
+@input-padding-x:                           0.75rem;
+@input-line-height:                         @line-height-base;
+
+@input-color:                               @brand-secondary;
+@input-bg:                                  @white;
+@input-bg-disabled:                         @brand-bg-gray;
+@input-checked-bg-disabled:                 @list-gray;
+@input-border-color:                        @border-color;
+@input-addon-color:                         @brand-secondary;
+@input-addon-bg:                            @brand-bg-gray;
+@input-border-focus:                        #66afe9;
+
+@input-border-width:                        1px 1px 2px;
+@input-border-radius:                       0;
+
+@legend-border-color:                       @border-color;
+@legend-color:                              @brand-secondary;
+@legend-bottom-margin:                      @base-margin * 1.25;
+
+@helpblock-margin:                          (@base-margin * 0.25) 0;
+
+@select-option-margin:                      (@base-margin * 0.187) (@base-margin * 0.375);
+
+/* Checkbox */
+@checkbox-checked-color:                    @brand-secondary-light-1;
+
+@checkbox-height:                           1.375rem;
+@checkbox-width:                            @checkbox-height; /* This also controls radio and togglebox */
+
+@checkbox-label-padding:                    @base-padding / 5;
+
+@checkbox-checkmark-height:                 2px;
+@checkbox-checkmark-width:                  2px;
+
+/* Radio */
+@radio-circle-height:                       10px;
+@radio-circle-width:                        10px;
+
+/* Rangeslider */
+@range-height:                              @checkbox-height / 2;
+@thumb-size:                                @checkbox-height;
+
+/*
+ * 14. Nav
+ * ==========================================================================
+ */
+
+@nav-margin:                                @base-margin @base-margin-xl @base-margin @base-margin-sm;
+@nav-margin-responsive:                     @base-margin @base-margin @base-margin @base-margin-sm;
+@nav-margin-tablet:                         @base-margin 0;
+@nav-submenu-margin-left:                   @base-margin * 0.3;
+@nav-submenu-list-margin-left:              @base-margin-xl + 0.75;
+
+@nav-submenu-padding:                       @base-padding * 0.34;
+@nav-submenu-p-first-child:                 calc(@nav-submenu-padding + 2px);
+@nav-submenu-p-icon-left:                   calc(@base-padding-sm + 2px);
+@nav-submenu-p-icon-open:                   calc(@base-padding-sm - 2px);
+
+@nav-icon-lineheight:                       1.1;
+@nav-submenu-font-size:                     @base-font-size * 0.85;
+@nav-submenu-border:                        2px solid @text-gray;
+
+@nav-submenu-before-width:                  1rem;
+@nav-submenu-before-height:                 1rem;
+@nav-submenu-before-left:                   -10px;
+@nav-submenu-before-top:                    13px;
+
+@nav-submenu-icon-fontsize-vertical:        @base-font-size * 2.25;
+
+/*
+ * 15. Pagination
+ * ==========================================================================
+ */
+
+@pagination-active-color:                   @brand-accent-links;
+@pagination-arrow-color:                    @brand-accent-links;
+@pagination-default-color:                  @list-gray;
+
+@pagination-bullet-size:                    @status-size;
+
+/*
+ * 16. Panel
+ * ==========================================================================
+ */
+
+/* Colors */
+@panel-background-color:                    transparent;
+@panel-footer-background-color:             transparent;
+@panel-box-shadow:                          @default-box-shadow;
+
+/* Default colors */
+@panel-default-border-color:                @border-color;
+@panel-default-text-color:                  @text-color;
+
+/* Contextual colors */
+@panel-default-color:                       @list-gray;
+@panel-brand-color:                         @brand-primary;
+
+@panel-border-radius:                       0;
+
+@panel-body-padding:                        2rem;
+@panel-table-margin:                        0;
+@panel-footer-padding:                      2rem;
+
+/*
+ * 17. Sheet
+ * ==========================================================================
+ */
+
+@sheet-backdrop-bg:                         fade(@black, 50%);
+@sheet-section-bg:                          @white;
+@sheet-section-padding:                     (@base-padding * 5) (@base-padding * 4) (@base-padding * 4);
+
+@sheet-width-xs:                            95%;
+@sheet-width-sm:                            75%;
+@sheet-width:                               580px;
+
+/*
+ * 18. Status
+ * ==========================================================================
+ */
+
+@status-size:                               13px;
+@status-padding:                            10;
+
+@status-padding-left:                       2rem;
+@status-padding-head:                       8rem;
+
+/*
+ * 19. Steps
+ * ==========================================================================
+ */
+
+@list-item-padding:                         5.4rem 0 0 0;
+@list-item-padding-desktop-top:             6rem;
+@list-item-padding-desktop:                 @list-item-padding-desktop-top 0 1.2rem 0;
+@list-item-padding-desktop-vertical:        2rem 1.5rem 2rem 7rem;
+
+@circle-size:                               30px;
+@circle-size-desktop:                       40px;
+
+@vertical-left:                             1.7rem;
+@vertical-margin:                           (@circle-size-desktop / 2) - (@line-width-desktop / 2);
+
+@line-width:                                3px;
+@line-width-desktop:                        5px;
+
+/*
+ * 20. Tabs
+ * ==========================================================================
+ */
+
+@tabs-fade-width:                           50px;
+
+/*
+ * 21. Toast
+ * ==========================================================================
+ */
+
+@toast-height:                              48px;
+@toast-color:                               @white;
+@toast-text-color:                          @text-color;
+@toast-action-color:                        @yellow;
+
+/*
+ * 22. Topbar
+ * ==========================================================================
+ */
+
+@topbar-height:                             85px;
+@topbar-nav-width:                          300px;
+@topbar-nav-slide-width:                    240px;
+@topbar-back-btn-width:                     40px; /* This does not actually control the width of the button... [EH] */
+@topbar-slide-prev-pos:                     260px;
+@topbar-slide-transition:                   0.5s ease;
+@topbar-background-transition:              background-color 0.5s ease-in;
+
+@topbar-margin:                             @base-margin + @base-margin-xs;
+@topbar-padding:                            @base-padding + @base-margin-xs;

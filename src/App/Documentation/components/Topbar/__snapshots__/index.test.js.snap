@@ -1,0 +1,256 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components: Topbar JavascriptMethods renders 1`] = `
+<Fragment>
+  <h2
+    id="javascript-methods"
+  >
+    JavaScript Methods
+  </h2>
+  <JavascriptDocs
+    close={true}
+    componentName="topbar"
+    open={true}
+  />
+</Fragment>
+`;
+
+exports[`Components: Topbar Overview renders 1`] = `
+<Fragment>
+  <h2
+    id="overview"
+  >
+    Overview
+  </h2>
+  <p>
+    To use a topbar the bare minimum markup required is:
+  </p>
+  <ul>
+    <li>
+      <Property
+        value=".topbar"
+      />
+       wrapper.
+    </li>
+    <li>
+      Anchor with class 
+      <Property
+        value=".topbar-logo"
+      />
+       to display the logo and make it clickable.
+    </li>
+  </ul>
+  <p>
+    With this you get a topbar with the Swedbank Pay logo. In the topbar you can add additional functionality like a menu containing links. To enable this add a 
+    <PrismCode
+      className="language-html"
+      component="code"
+    >
+      &lt;button&gt;
+    </PrismCode>
+     and a 
+    <PrismCode
+      className="language-html"
+      component="code"
+    >
+      &lt;nav&gt;
+    </PrismCode>
+     containing anchors. Remember to include 
+    <Attribute
+      data={true}
+      name="toggle-nav"
+      value="{your_nav_id}"
+    />
+     as a 
+    <PrismCode
+      className="language-html"
+      component="code"
+    >
+      &lt;button&gt;
+    </PrismCode>
+     attribute to get the menu to appear when the menu-button is clicked.
+  </p>
+  <ComponentPreview
+    codeFigure={true}
+    language="html"
+    showCasePanel={true}
+  >
+    <Topbar
+      id="demo-topbar"
+      logout={true}
+      topbarContent={
+        Object {
+          "btn": Object {
+            "icon": "menu",
+            "name": "Menu",
+          },
+          "items": Array [
+            Object {
+              "icon": "home",
+              "name": "Home",
+            },
+            Object {
+              "icon": "shopping_cart",
+              "name": "Purchase history",
+            },
+            Object {
+              "icon": "settings",
+              "name": "Settings",
+            },
+          ],
+        }
+      }
+    />
+  </ComponentPreview>
+</Fragment>
+`;
+
+exports[`Components: Topbar TopbarPNG renders 1`] = `
+<Fragment>
+  <h2
+    id="topbar-png"
+  >
+    Topbar with PNG logo
+  </h2>
+  <p>
+    A PNG version of the logo can also be used. This is done by appending the class 
+    <Property
+      value=".topbar-logo-png"
+    />
+     to the anchor with class 
+    <Property
+      value=".topbar-logo"
+    />
+    . Only consider using the PNG version when there are issues with using the SVG version.
+  </p>
+  <ComponentPreview
+    codeFigure={true}
+    language="html"
+    showCasePanel={true}
+  >
+    <Topbar
+      id="demo-topbar-png"
+      logout={true}
+      png={true}
+      topbarContent={
+        Object {
+          "btn": Object {
+            "icon": "menu",
+            "name": "Menu",
+          },
+          "items": Array [
+            Object {
+              "icon": "home",
+              "name": "Home",
+            },
+            Object {
+              "icon": "shopping_cart",
+              "name": "Purchase history",
+            },
+            Object {
+              "icon": "settings",
+              "name": "Settings",
+            },
+          ],
+        }
+      }
+    />
+  </ComponentPreview>
+  <ComponentPreview
+    codeFigure={true}
+    language="html"
+    showCasePanel={true}
+  >
+    <Topbar
+      id="demo-topbar-1-png"
+      logout={true}
+      png={true}
+      topbarContent={
+        Object {
+          "btn": Object {
+            "icon": "menu",
+            "name": "Menu",
+          },
+          "items": Array [
+            Object {
+              "icon": "home",
+              "name": "Home",
+            },
+            Object {
+              "icon": "shopping_cart",
+              "name": "Purchase history",
+            },
+            Object {
+              "icon": "settings",
+              "name": "Settings",
+            },
+          ],
+        }
+      }
+      wide="xl"
+    />
+  </ComponentPreview>
+</Fragment>
+`;
+
+exports[`Components: Topbar TopbarWide renders 1`] = `
+<Fragment>
+  <h2
+    id="topbar-wide"
+  >
+    Wide topbar
+  </h2>
+  <p>
+    This is a wide topbar.
+  </p>
+  <ComponentPreview
+    codeFigure={true}
+    language="html"
+    showCasePanel={true}
+  >
+    <Topbar
+      id="demo-topbar-1"
+      logout={true}
+      topbarContent={
+        Object {
+          "btn": Object {
+            "icon": "menu",
+            "name": "Menu",
+          },
+          "items": Array [
+            Object {
+              "icon": "home",
+              "name": "Home",
+            },
+            Object {
+              "icon": "shopping_cart",
+              "name": "Purchase history",
+            },
+            Object {
+              "icon": "settings",
+              "name": "Settings",
+            },
+          ],
+        }
+      }
+      wide="xl"
+    />
+  </ComponentPreview>
+</Fragment>
+`;
+
+exports[`Components: Topbar renders 1`] = `
+<DocContainer
+  docToc={true}
+>
+  <p
+    className="lead"
+  >
+    The topbar is used to give users an easily available navigational bar at the top of your web application.
+  </p>
+  <Overview />
+  <TopbarWide />
+  <TopbarPNG />
+  <JavascriptMethods />
+</DocContainer>
+`;

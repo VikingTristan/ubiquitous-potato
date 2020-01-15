@@ -1,0 +1,6 @@
+dist/styles
+**/*.min.css
+*.md
+**/*.js
+**/*.snap.js
+src/less/core/normalize.less

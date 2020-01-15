@@ -1,0 +1,154 @@
+// List keeps list items block level, just removes default browser padding and list-style
+.list {
+    padding-left: 0;
+    list-style: none;
+
+    ul,
+    ol {
+        padding-left: @base-padding-lg;
+        list-style: none;
+    }
+}
+
+// Inline turns list items into inline-block
+.list-inline {
+    margin-left: -@base-margin-xs;
+
+    > li {
+        display: inline-block;
+        padding-left: @base-padding-xs;
+        padding-right: @base-padding-xs;
+    }
+}
+
+.list-bullet {
+    li {
+        position: relative;
+        padding-left: 1rem;
+
+        &:before {
+            position: absolute;
+            left: 0;
+            content: "\2022";
+            color: @brand-secondary;
+            width: 0.875rem;
+        }
+    }
+}
+
+.description-list {
+    dt {
+        text-transform: uppercase;
+        font-weight: 300;
+        font-size: @base-font-size * 0.9;
+        line-height: 1.7rem;
+        margin-top: @base-margin;
+    }
+
+    dd {
+        margin-left: 0;
+        line-height: 1.5rem;
+    }
+}
+
+.settings-list {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+        display: flex;
+
+        .material-icons {
+            margin-right: @base-margin-sm;
+        }
+    }
+}
+
+.item-list {
+    list-style: none;
+    padding-left: 0;
+    line-height: 1;
+
+    li {
+        display: flex;
+        flex-flow: wrap;
+        padding: 1rem;
+        border-bottom: 1px solid @brand-bg-gray;
+
+        /* stylelint-disable selector-list-comma-newline-after */
+        h1, h2, h3, h4, h5, h6,
+        .h1, .h2, .h3, .h4, .h5, .h6 {
+            margin: 0;
+        }
+        /* stylelint-enable selector-list-comma-newline-after */
+
+        > :first-child {
+            flex: 1 1 auto;
+            align-self: center;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+            border-bottom: 0;
+        }
+
+        > footer,
+        .item-list-footer {
+            padding: 0.5rem 0;
+            flex: 1 100%;
+        }
+    }
+
+    &.item-list-bordered {
+        li {
+            box-shadow: @box-shadow-bottom;
+            border-top: @box-border;
+            border-left: @box-border;
+            border-right: @box-border;
+            padding: 1rem;
+            margin-bottom: 1rem;
+
+            &:last-child {
+                border-bottom: 1px solid @brand-bg-gray;
+            }
+        }
+    }
+
+    &.item-list-lg {
+        li {
+            line-height: 1.75rem;
+
+            > footer,
+            .item-list-footer {
+                padding: 0.5rem 0;
+            }
+        }
+    }
+
+    &.item-list-striped {
+        li {
+            &:nth-child(odd) {
+                background-color: @light-gray;
+            }
+        }
+    }
+
+    &.item-list-hover {
+        li {
+            // position: relative;
+
+            // &:hover:before {
+            //     content: "";
+            //     top: -1px;
+            //     left: 0;
+            //     bottom: -1px;
+            //     position: absolute;
+            //     width: 6px;
+            //     background-color: @brand-primary;
+            // }
+            &:hover {
+                background-color: @light-gray;
+            }
+        }
+    }
+}

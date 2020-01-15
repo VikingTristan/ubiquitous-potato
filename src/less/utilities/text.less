@@ -1,0 +1,60 @@
+/* stylelint-disable block-opening-brace-space-before, declaration-no-important */
+
+// Alignment
+
+.text-justify  { text-align: justify !important; }
+.text-nowrap   { white-space: nowrap !important; }
+.text-truncate { .text-truncate(); }
+
+// Font family
+
+.swed-emphasized {
+    font-family: @brand-headline;
+}
+
+// Responsive alignment
+
+each(@grid-breakpoints, .(@size, @abbr) {
+    @ruleset: {
+        .text@{infix}-left           { text-align: left !important; }
+        .text@{infix}-right          { text-align: right !important; }
+        .text@{infix}-center         { text-align: center !important; }
+    }
+
+    .media-breakpoint-up(@size, @abbr, @ruleset);
+});
+
+// Transformation
+
+.text-lowercase      { text-transform: lowercase !important; }
+.text-uppercase      { text-transform: uppercase !important; }
+.text-capitalize     { text-transform: capitalize !important; }
+
+// Weight and italics
+.font-weight-light   { font-weight: @font-weight-light !important; }
+.font-weight-normal  { font-weight: @font-weight-normal !important; }
+.font-weight-bold    { font-weight: @font-weight-bold !important; }
+.font-italic         { font-style: italic !important; }
+
+// Contextual colors
+
+each(@color-list, .(@color, @name) {
+    .color-variant(~"text-@{name}", @color);
+});
+
+.text-muted { color: @text-muted !important; }
+
+.text-black-50 { color: fade(@black, 50%) !important; }
+.text-white-50 { color: fade(@white, 50%) !important; }
+
+// Misc
+
+.text-decoration-none { text-decoration: none !important; }
+
+// Reset
+
+.text-reset { color: inherit !important; }
+
+// Highlight
+
+.text-highlight { border-bottom: 4px solid @brand-primary; }

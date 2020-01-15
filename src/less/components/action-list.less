@@ -1,0 +1,96 @@
+.action-list {
+    position: relative;
+    display: inline-flex;
+
+    .action-menu {
+        position: absolute;
+        top: 2.7rem;
+        right: 0;
+        z-index: @zindex-action-list;
+        height: 0;
+        overflow: hidden;
+        box-shadow: @action-list-shadow;
+        background-color: @white;
+
+        > a {
+            display: flex;
+            padding: 0.5rem 1rem 0.3rem 0.5rem;
+            visibility: hidden;
+            position: relative;
+            text-decoration: none;
+            white-space: nowrap;
+            align-items: center;
+            color: @brand-secondary-dark-2;
+
+            > .material-icons {
+                margin-right: @base-margin-sm;
+            }
+
+            &:hover {
+                text-decoration: none;
+                background-color: @light-gray;
+            }
+
+            &:not(:last-child) {
+                border-bottom: 1px solid @light-gray;
+            }
+        }
+    }
+
+    .action-toggle {
+        position: relative;
+        line-height: 1.1;
+        user-select: none;
+        border-radius: 2px;
+        background-color: inherit;
+        color: @brand-secondary-dark-2;
+        display: flex;
+        padding: 0;
+        border: 0;
+        outline: 0;
+
+        &:not(.material-icons) {
+            padding: 0.7rem;
+        }
+
+        &:hover {
+            cursor: pointer;
+            background-color: @light-gray;
+        }
+    }
+
+    &.active {
+        .action-toggle {
+            background-color: @light-gray;
+        }
+
+        .action-menu {
+            height: fit-content;
+
+            > a {
+                visibility: visible;
+            }
+        }
+    }
+
+    &.anchor-top-left {
+        .action-menu {
+            right: initial;
+        }
+    }
+
+    &.anchor-bottom-right {
+        .action-menu {
+            top: initial;
+            bottom: 2.7rem;
+        }
+    }
+
+    &.anchor-bottom-left {
+        .action-menu {
+            top: initial;
+            right: $top;
+            bottom: 2.7rem;
+        }
+    }
+}

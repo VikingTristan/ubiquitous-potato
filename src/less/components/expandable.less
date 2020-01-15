@@ -1,0 +1,107 @@
+.expandable {
+    border: 1px solid @brand-secondary-light-3;
+    border-bottom: 2px solid @brand-secondary-light-3;
+    border-radius: 2px;
+    margin-bottom: 1rem;
+    background-color: @light-gray;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s ease, height 0.3s ease;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &.show {
+        .expandable-body {
+            display: block;
+        }
+    }
+
+    &.expandable-open {
+        border-top: 1px solid transparent;
+        background-color: @white;
+        transition: background-color 0.3s ease;
+
+        .expandable-header {
+            background-color: @white;
+            transition: background-color 0.3s ease;
+
+            &:after {
+                background-color: @brand-primary;
+                transition: background-color 0.15s ease;
+            }
+
+            &:before {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    .expandable-header {
+        font-weight: normal;
+        font-family: @brand-headline;
+        text-decoration: none;
+        vertical-align: middle;
+        touch-action: manipulation;
+        cursor: pointer;
+        line-height: 1rem;
+        border: 1px solid transparent;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        user-select: none;
+        color: @brand-secondary-dark-2;
+        background-color: @white;
+        padding: 1rem;
+        text-align: start;
+        transition: background-color 0.3s ease;
+
+        .expandable-headline {
+            font-family: @brand-headline;
+            font-size: 1rem;
+            padding: 0;
+        }
+
+        .expandable-subtitle {
+            font-family: @font-stack;
+
+            .small();
+        }
+
+        &:after {
+            content: "";
+            position: absolute;
+            background-color: transparent;
+            height: 4px;
+            left: -1px;
+            right: -1px;
+            top: -1px;
+            transition: background-color 0.15s ease;
+        }
+
+        &:before {
+            .material-icons-styling(@margin: 0 1rem);
+
+            content: "keyboard_arrow_down";
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: $top;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .expandable-body {
+        padding: 0 1rem;
+        display: none;
+    }
+
+    .expanding {
+        height: 0;
+        overflow: hidden;
+        transition: height 0.3s ease;
+    }
+}
