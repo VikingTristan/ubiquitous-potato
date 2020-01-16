@@ -13,6 +13,7 @@ jobs:
       matrix:
         brand: ["payex", "swedbankpay"]
     steps:
+      - uses: actions/checkout@v2
       - run: |
           echo "Lets try passing current matrix into a bash script I guess"
           chmod +x ./.github/scripts/script.sh
