@@ -49,7 +49,7 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build:prod:payex -- --env.baseUrl="$BRAND_URL" --env.basename=${{ steps.gitversion.outputs.branchName }} --env.semver=${{ steps.gitversion.outputs.semVer }}--env.info_version=${{ steps.gitversion.outputs.informationalVersion }}
+        run: npm run build:prod$BRAND_BUILD -- --env.baseUrl="$BRAND_URL" --env.basename=${{ steps.gitversion.outputs.branchName }} --env.semver=${{ steps.gitversion.outputs.semVer }}--env.info_version=${{ steps.gitversion.outputs.informationalVersion }}
 
       - name: Azure Login
         uses: azure/login@v1
