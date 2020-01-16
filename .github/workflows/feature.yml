@@ -14,18 +14,17 @@ jobs:
         brand: ["payex", "swedbankpay"]
     steps:
       - uses: actions/checkout@v2
-      - name: Setup brand variables
+      - name: Environment variables
         id: variables
         run: |
           chmod +x ./.github/scripts/script.sh
           ./.github/scripts/script.sh
         env:
           BRAND: ${{ matrix.brand }}
-      - name: Print brand variables
+      - name: Print variables
         run: |
           echo $BRAND_NAME
           echo $BRAND_URL
-          echo $BRAND
     # # - uses: actions/checkout@v2
     #   - uses: actions/checkout@v1
     #   - name: Fetch tags and master for GitVersion
