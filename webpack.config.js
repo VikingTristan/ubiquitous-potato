@@ -231,7 +231,7 @@ module.exports = (env, argv) => {
                     basename: JSON.stringify(basename),
                     version: JSON.stringify(version),
                     // sentry: isRelease,
-                    google: isRelease,
+                    // google: isRelease,
                     brand: JSON.stringify(brand),
                     brandTitle: JSON.stringify(brandTitle)
                 }
