@@ -6,21 +6,7 @@ jobs:
     name: PayEx
     runs-on: ubuntu-latest
     steps:
-      # - uses: actions/checkout@v2
-      - uses: actions/checkout@v1
-      - name: Fetch tags and master for GitVersion
-        run: |
-          git fetch --tags
-          git branch --create-reflog master origin/master
-
-      - name: Install GitVersion
-        uses: gittools/actions/setup-gitversion@v0.3
-        with:
-          versionSpec: '5.1.x'
-
-      - name: Use GitVersion
-        id: gitversion # step id used as reference for output values
-        uses: gittools/actions/execute-gitversion@v0.3
+      - uses: actions/checkout@v2
 
       - name: Set Node.js 12.x
         uses: actions/setup-node@master
@@ -28,7 +14,7 @@ jobs:
           node-version: 12.x
 
       - name: Install
-        run: npm install
+        run: npm ci
 
       - name: Build
         run: npm run build:prod:payex
