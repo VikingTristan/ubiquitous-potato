@@ -14,10 +14,13 @@ jobs:
         brand: ["payex", "swedbankpay"]
     steps:
       - uses: actions/checkout@v2
-      - run: |
-          echo "Lets try passing current matrix into a bash script I guess"
+      - name: Setup brand variables
+        run: |
+          echo Do we have brand? $BRAND
           chmod +x ./.github/scripts/script.sh
           ./.github/scripts/script.sh
+        env:
+          BRAND: ${{ matrix.brand }}
     # # - uses: actions/checkout@v2
     #   - uses: actions/checkout@v1
     #   - name: Fetch tags and master for GitVersion

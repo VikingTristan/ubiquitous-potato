@@ -1,1 +1,1 @@
-echo "Running script with $matrix.os !"
+echo Hello from within script... does script have brand aswell? $BRAND
