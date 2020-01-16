@@ -6,42 +6,49 @@ on:
       - "develop"
 
 jobs:
-  payex:
-    name: PayEx
+  build:
+    name: Build it all
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        brand: ["payex", "swedbankpay"]
     steps:
-    # - uses: actions/checkout@v2
-      - uses: actions/checkout@v1
-      - name: Fetch tags and master for GitVersion
-        run: |
-          git fetch --tags
-          git branch --create-reflog master origin/master
-      - name: Install GitVersion
-        uses: gittools/actions/setup-gitversion@v0.3
-        with:
-          versionSpec: '5.1.x'
-      - name: Use GitVersion
-        id: gitversion # step id used as reference for output values
-        uses: gittools/actions/execute-gitversion@v0.3
+      - run: |
+          echo "Lets try passing current matrix into a bash script I guess"
+          chmod +x ./.github/scripts/script.sh
+          ./.github/scripts/script.sh
+    # # - uses: actions/checkout@v2
+    #   - uses: actions/checkout@v1
+    #   - name: Fetch tags and master for GitVersion
+    #     run: |
+    #       git fetch --tags
+    #       git branch --create-reflog master origin/master
+    #   - name: Install GitVersion
+    #     uses: gittools/actions/setup-gitversion@v0.3
+    #     with:
+    #       versionSpec: '5.1.x'
+    #   - name: Use GitVersion
+    #     id: gitversion # step id used as reference for output values
+    #     uses: gittools/actions/execute-gitversion@v0.3
 
-      - name: Set Node.js 12.x
-        uses: actions/setup-node@master
-        with:
-          node-version: 12.x
+    #   - name: Set Node.js 12.x
+    #     uses: actions/setup-node@master
+    #     with:
+    #       node-version: 12.x
 
-      - name: Install
-        run: npm ci
+    #   - name: Install
+    #     run: npm ci
 
-      - name: Build
-        run: npm run build:prod:payex -- --env.baseUrl="https://payexdesignguide.z16.web.core.windows.net" --env.basename=${{ steps.gitversion.outputs.branchName }} --env.semver=${{ steps.gitversion.outputs.semVer }}--env.info_version=${{ steps.gitversion.outputs.informationalVersion }}
+    #   - name: Build
+    #     run: npm run build:prod:payex -- --env.baseUrl="https://payexdesignguide.z16.web.core.windows.net" --env.basename=${{ steps.gitversion.outputs.branchName }} --env.semver=${{ steps.gitversion.outputs.semVer }}--env.info_version=${{ steps.gitversion.outputs.informationalVersion }}
 
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+    #   - name: Azure Login
+    #     uses: azure/login@v1
+    #     with:
+    #       creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Azure Deploy
-        uses: azure/CLI@v1
-        with:
-          inlineScript: |
-            az storage blob upload-batch -s dist -d \$web --account-name payexdesignguide
+    #   - name: Azure Deploy
+    #     uses: azure/CLI@v1
+    #     with:
+    #       inlineScript: |
+    #         az storage blob upload-batch -s dist -d \$web --account-name payexdesignguide
