@@ -1,12 +1,13 @@
 echo Hello from within script... does script have brand? $BRAND
-echo ::set-env name=BRAND_NAME::$BRAND
-echo ::set-env name=BRAND_URL::testurl
+
 echo $BRAND_NAME
 
 if [ "$BRAND" == "payex" ]; then
-    echo "We should do payex things now!"
+    echo ::set-env name=BRAND_NAME::PayEx
+    echo ::set-env name=BRAND_URL::https://payexdesignguide.z16.web.core.windows.net
 elif [ "$BRAND" == "swedbankpay" ]; then
-    echo "We should do swedbank pay things now!"
+    echo ::set-env name=BRAND_NAME::Swedbank Pay
+    echo ::set-env name=BRAND_URL::https://swedbankpaydesignguide.z16.web.core.windows.net
 else
     echo "Unknown brand!"
 fi
