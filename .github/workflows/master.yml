@@ -8,9 +8,21 @@ jobs:
   build:
     name: Build and deploy
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        brand: ["payex", "swedbankpay"]
     steps:
       # - uses: actions/checkout@v2
       - uses: actions/checkout@v1
+
+      # Set brand specific variables
+      - name: Environment variables
+        run: |
+          chmod +x ./.github/scripts/script.sh
+          ./.github/scripts/script.sh
+        env:
+          BRAND: ${{ matrix.brand }}
+      
       - name: Fetch tags and master for GitVersion
         run: |
           git fetch --tags
@@ -32,7 +44,7 @@ jobs:
         run: npm ci # <-- Node gyp fails on "npm ci" for some reason
 
       - name: Build
-        run: npm run build:prod:payex -- --env.release=true --env.baseUrl="https://payexdesignguide.z16.web.core.windows.net" --env.basename="v/${{ steps.gitversion.outputs.majorMinorPatch }}" --env.semver=${{ steps.gitversion.outputs.semVer }} --env.info_version=${{ steps.gitversion.outputs.informationalVersion }}
+        run: npm run $BRAND_BUILD_SCRIPT -- --env.release=true --env.baseUrl="$BRAND_URL" --env.basename="v/${{ steps.gitversion.outputs.majorMinorPatch }}" --env.semver=${{ steps.gitversion.outputs.semVer }} --env.info_version=${{ steps.gitversion.outputs.informationalVersion }}
 
       - name: Azure Login
         uses: azure/login@v1
@@ -43,4 +55,4 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az storage blob upload-batch -s dist -d \$web --account-name payexdesignguide
+            az storage blob upload-batch -s dist -d \$web --account-name ${{ matrix.brand }}designguide

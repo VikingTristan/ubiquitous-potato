@@ -5,8 +5,19 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        brand: ["payex", "swedbankpay"]
     steps:
       - uses: actions/checkout@v2
+
+      # Set brand specific variables
+      - name: Environment variables
+        run: |
+          chmod +x ./.github/scripts/script.sh
+          ./.github/scripts/script.sh
+        env:
+          BRAND: ${{ matrix.brand }}
 
       - name: Set Node.js 12.x
         uses: actions/setup-node@master
@@ -17,4 +28,4 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build:prod:payex
+        run: npm run $BRAND_BUILD_SCRIPT
