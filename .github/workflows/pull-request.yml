@@ -36,4 +36,4 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run $BRAND_BUILD_SCRIPT -- --env.basename=${{ steps.gitversion.outputs.branchName }}
+        run: npm run $BRAND_BUILD_SCRIPT -- --env.basename=IAmHereToAvoidBundleAnalyzer
