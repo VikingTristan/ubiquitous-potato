@@ -57,7 +57,7 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run $BRAND_BUILD_SCRIPT -- --env.baseUrl="$BRAND_URL" --env.basename=${{ steps.gitversion.outputs.branchName }} --env.semver=${{ steps.gitversion.outputs.semVer }}--env.info_version=${{ steps.gitversion.outputs.informationalVersion }}
+        run: npm run $BRAND_BUILD_SCRIPT -- --env.baseUrl="$BRAND_URL" --env.basename=${{ steps.gitversion.outputs.branchName }} --env.semver=${{ steps.gitversion.outputs.semVer }} --env.info_version=${{ steps.gitversion.outputs.informationalVersion }} --env.github_actions=true
 
       - name: Azure Login
         uses: azure/login@v1
