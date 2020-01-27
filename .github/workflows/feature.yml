@@ -13,7 +13,10 @@ jobs:
       matrix:
         brand: ["payex", "swedbankpay"]
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Fetch all history for all tags and branches
+        run: git fetch --prune --unshallow
 
       # Set brand specific variables
       - name: Environment variables
@@ -28,10 +31,10 @@ jobs:
           echo $BRAND_URL
           echo $BRAND_BUILD_SCRIPT
 
-      - name: Fetch tags and master for GitVersion
-        run: |
-          git fetch --tags
-          git branch --create-reflog master origin/master
+      # - name: Fetch tags and master for GitVersion
+      #   run: |
+      #     git fetch --tags
+      #     git branch --create-reflog master origin/master
 
       - name: Install GitVersion
         uses: gittools/actions/setup-gitversion@v0.6.1
