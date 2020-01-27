@@ -56,7 +56,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install
-        run: npm ci # <-- Node gyp fails on "npm ci" for some reason
+        run: npm ci
 
       - name: Build
         run: npm run $BRAND_BUILD_SCRIPT -- --env.release=true --env.baseUrl="$BRAND_URL" --env.basename="v/${{ steps.gitversion.outputs.majorMinorPatch }}" --env.semver=${{ steps.gitversion.outputs.semVer }} --env.info_version=${{ steps.gitversion.outputs.informationalVersion }}

@@ -1,0 +1,30 @@
+# # This is not yet included because AppVeyor handles releases atm
+# # But this workflow will replace that
+# on:
+#   push:
+#     tags:
+#       - 'v*'
+
+# name: Create Release
+
+# jobs:
+#   build:
+#     name: Create Release
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Create Release
+#         id: create_release
+#         uses: actions/create-release@v2
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         with:
+#           tag_name: ${{ github.ref }}
+#           release_name: Release ${{ github.ref }}
+#           # TODO Add content of changelog to body here
+#           body: |
+#             Changes in this Release
+#             - First Change
+#             - Second Change
+#           draft: false
+#           prerelease: false
