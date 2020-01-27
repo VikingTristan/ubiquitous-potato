@@ -5,7 +5,7 @@ const appRoutes = require("./tools/generate-routes-copy-array");
 const levelsToRoot = require("./tools/levels-to-root");
 const autoprefixer = require("autoprefixer");
 const TerserPlugin = require("terser-webpack-plugin");
-// const SentryCliPlugin = require("@sentry/webpack-plugin");
+const SentryCliPlugin = require("@sentry/webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const FileManagerPlugin = require("filemanager-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -230,8 +230,8 @@ module.exports = (env, argv) => {
                 "process.env": {
                     basename: JSON.stringify(basename),
                     version: JSON.stringify(version),
-                    // sentry: isRelease,
-                    // google: isRelease,
+                    sentry: isRelease,
+                    google: isRelease,
                     brand: JSON.stringify(brand),
                     brandTitle: JSON.stringify(brandTitle)
                 }
@@ -268,11 +268,11 @@ module.exports = (env, argv) => {
                 baseUrl,
                 basename
             }),
-            // new SentryCliPlugin({
-            //     release: version,
-            //     include: ".",
-            //     ignore: ["node_modules", "webpack.config.js"]
-            // })
+            new SentryCliPlugin({
+                release: version,
+                include: ".",
+                ignore: ["node_modules", "webpack.config.js"]
+            })
         );
     }
 
