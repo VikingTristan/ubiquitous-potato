@@ -13,8 +13,8 @@ jobs:
       matrix:
         brand: ["payex", "swedbankpay"]
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+
       - name: Fetch all history for all tags and branches
         run: git fetch --prune --unshallow
 
@@ -30,20 +30,6 @@ jobs:
         run: |
           echo $BRAND_URL
           echo $BRAND_BUILD_SCRIPT
-
-      # Add sentry token
-      # This is just to see if it works... REMOVE THIS when done
-      - name: Sentry token
-        run: |
-          chmod +x ./.github/scripts/sentry.sh
-          ./.github/scripts/sentry.sh
-        env:
-          TOKEN: TESTTOKEN
-
-      # - name: Fetch tags and master for GitVersion
-      #   run: |
-      #     git fetch --tags
-      #     git branch --create-reflog master origin/master
 
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0.6.1
