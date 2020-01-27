@@ -1,4 +1,4 @@
-name: Build and deploy feature
+name: Feature or develop
 on: 
   push:
     branches:
@@ -6,34 +6,58 @@ on:
       - "develop"
 
 jobs:
-  payex:
-    name: PayEx
+  build:
+    name: Build and deploy
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        brand: ["payex", "swedbankpay"]
     steps:
-    # - uses: actions/checkout@v2
-      - uses: actions/checkout@v1
-      - name: Fetch tags and master for GitVersion
+      - uses: actions/checkout@v2
+
+      - name: Fetch all history for all tags and branches
+        run: git fetch --prune --unshallow
+
+      # Set brand specific variables
+      - name: Environment variables
         run: |
-          git fetch --tags
-          git branch --create-reflog master origin/master
+          chmod +x ./.github/scripts/variables.sh
+          ./.github/scripts/variables.sh
+        env:
+          BRAND: ${{ matrix.brand }}
+
+      - name: Print variables
+        run: |
+          echo $BRAND_URL
+          echo $BRAND_BUILD_SCRIPT
+
       - name: Install GitVersion
-        uses: gittools/actions/setup-gitversion@v0.3
+        uses: gittools/actions/gitversion/setup@v0.6.1
         with:
           versionSpec: '5.1.x'
+
       - name: Use GitVersion
-        id: gitversion # step id used as reference for output values
-        uses: gittools/actions/execute-gitversion@v0.3
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v0.6.1
 
       - name: Set Node.js 12.x
         uses: actions/setup-node@master
         with:
           node-version: 12.x
 
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Install
         run: npm ci
 
       - name: Build
-        run: npm run build:prod:payex -- --env.baseUrl="https://payexdesignguide.z16.web.core.windows.net" --env.basename=${{ steps.gitversion.outputs.branchName }} --env.semver=${{ steps.gitversion.outputs.semVer }}--env.info_version=${{ steps.gitversion.outputs.informationalVersion }}
+        run: npm run $BRAND_BUILD_SCRIPT -- --env.baseUrl="$BRAND_URL" --env.basename=${{ steps.gitversion.outputs.branchName }} --env.semver=${{ steps.gitversion.outputs.semVer }}--env.info_version=${{ steps.gitversion.outputs.informationalVersion }}
 
       - name: Azure Login
         uses: azure/login@v1
@@ -44,4 +68,4 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az storage blob upload-batch -s dist -d \$web --account-name payexdesignguide
+            az storage blob upload-batch -s dist -d \$web --account-name ${{ matrix.brand }}designguide
