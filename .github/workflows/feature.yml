@@ -31,6 +31,15 @@ jobs:
           echo $BRAND_URL
           echo $BRAND_BUILD_SCRIPT
 
+      # Add sentry token
+      # This is just to see if it works... REMOVE THIS when done
+      - name: Sentry token
+        run: |
+          chmod +x ./.github/scripts/sentry.sh
+          ./.github/scripts/sentry.sh
+        env:
+          TOKEN: TESTTOKEN
+
       # - name: Fetch tags and master for GitVersion
       #   run: |
       #     git fetch --tags
