@@ -32,8 +32,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Install
-        run: npm ci
-
-      - name: Build
-        run: npm run $BRAND_BUILD_SCRIPT -- --env.basename=IAmHereToAvoidBundleAnalyzer
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
