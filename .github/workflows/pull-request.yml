@@ -45,6 +45,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
+      - name: test
+        run: git diff
+
       - uses: preactjs/compressed-size-action@v1
         env:
           BUILD_SCRIPT: $BRAND_BUILD_SCRIPT
