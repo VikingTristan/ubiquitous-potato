@@ -6,6 +6,6 @@ elif [ "$BRAND" == "swedbankpay" ]; then
     echo ::set-env name=BRAND_URL::https://swedbankpaydesignguide.z16.web.core.windows.net
     echo ::set-env name=BRAND_BUILD_SCRIPT::build:prod
     echo ::set-output name=BRAND_BUILD_SCRIPT::build:prod
-else
+else 
     echo "Unknown brand!"
 fi
