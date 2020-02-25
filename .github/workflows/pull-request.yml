@@ -33,10 +33,12 @@ jobs:
             ${{ runner.os }}-node-
 
       - uses: preactjs/compressed-size-action@v1
+        env:
+          BUILD_SCRIPT: $BRAND_BUILD_SCRIPT
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           # basename=PullRequest is added to avoid BundleAnalyzer from holding up the agent
           # Eventually we could build both brands here with the $BRAND_BUILD_SCRIPT
           # But passing in a variable doesn't seem to work at time of writing, 
           # so we'll have to suffice with building the default Swedbank Pay brand for now [THN]
-          build-script: "build:prod -- --env.basename=PullRequest"
+          build-script: $BUILD_SCRIPT
