@@ -1,8 +1,8 @@
-name: Master
-on: 
+name: Tag
+on:
   push:
-    branches:
-      - master
+    tags:
+      - '*'
 
 jobs:
   build:
