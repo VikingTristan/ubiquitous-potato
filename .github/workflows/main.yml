@@ -56,11 +56,6 @@ jobs:
       - name: Install
         run: npm ci
 
-      - uses: preactjs/compressed-size-action@v1
-        with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          build-script: $BRAND_BUILD_SCRIPT
-
       - name: Build
         run: npm run $BRAND_BUILD_SCRIPT -- --env.baseUrl="$BRAND_URL" --env.basename=${{ steps.gitversion.outputs.branchName }} --env.semver=${{ steps.gitversion.outputs.semVer }} --env.info_version=${{ steps.gitversion.outputs.informationalVersion }} --env.github_actions=true
 
