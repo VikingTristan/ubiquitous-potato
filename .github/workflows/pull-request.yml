@@ -38,7 +38,7 @@ jobs:
       - uses: preactjs/compressed-size-action@v1
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          build-script: "$BRAND_BUILD_SCRIPT -- --env.basename=IAmHereToAvoidBundleAnalyzer"
+          build-script: $BRAND_BUILD_SCRIPT
 
       # - name: Build
       #   run: npm run $BRAND_BUILD_SCRIPT -- --env.basename=IAmHereToAvoidBundleAnalyzer
