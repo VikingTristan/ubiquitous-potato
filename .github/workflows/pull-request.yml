@@ -11,6 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Fetch all history for all tags and branches
+        run: git fetch --prune --unshallow
+
       # Set brand specific variables
       - name: Environment variables
         id: variables
@@ -19,6 +22,15 @@ jobs:
           ./.github/scripts/variables.sh
         env:
           BRAND: ${{ matrix.brand }}
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.6.1
+        with:
+          versionSpec: '5.1.x'
+
+      - name: Use GitVersion
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v0.6.1
 
       - name: Set Node.js 12.x
         uses: actions/setup-node@master
