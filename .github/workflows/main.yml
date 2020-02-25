@@ -1,4 +1,4 @@
-name: Feature or develop
+name: Main
 on: 
   push:
     branches:
