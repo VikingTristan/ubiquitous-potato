@@ -18,6 +18,7 @@ jobs:
       - name: Environment variables
         id: variables
         run: |
+          git config core.filemode false
           chmod +x ./.github/scripts/variables.sh
           ./.github/scripts/variables.sh
         env:
