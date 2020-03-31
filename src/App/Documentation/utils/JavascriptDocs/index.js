@@ -1,45 +1,51 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { DgScript } from "@docutils";
+import CodeTags from "@components/CodeTags";
+
+import DocElement from "@docutils/JavascriptDocElement";
 
 const OpenDocs = ({ componentName }) => (
     <>
-        <tr>
-            <td scope="row"><DgScript component={componentName} func="open" params={[`<${componentName.toLowerCase()}-id>`]} /></td>
-            <td>Opens the given {componentName.toLowerCase()}</td>
-        </tr>
+        <DocElement
+            code={<CodeTags type="secondary" code={`dg.${componentName}.open(<${componentName}-id>)`} params={[`<${componentName}-id>`]} />}
+            description={
+                <>
+                    Opens the given {componentName.toLowerCase()}
+                </>
+            }
+        />
     </>
 );
 
 const CloseDocs = ({ componentName }) => (
     <>
-        <tr>
-            <td scope="row"><DgScript component={componentName} func="close" params={[`<${componentName.toLowerCase()}-id>`]} /></td>
-            <td>Closes the given {componentName.toLowerCase()}</td>
-        </tr>
+        <DocElement
+            code={<CodeTags type="secondary" code={`dg.${componentName}.close(<${componentName}-id>)`} params={[`<${componentName}-id>`]} />}
+            description={
+                <>
+                    Closes the given {componentName}
+                </>
+            }
+        />
     </>
 );
 
 const JavascriptDocs = ({ componentName, open, close, others }) => (
     <>
-        <table className="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Function</th>
-                    <th scope="col">Purpose</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td scope="row"><DgScript component={componentName} func="init" /></td>
-                    <td><Link to="/docs/getting-started/javascript">Initializes</Link> {componentName.toLowerCase()}</td>
-                </tr>
-                {open ? <OpenDocs componentName={componentName} /> : null}
-                {close ? <CloseDocs componentName={componentName} /> : null}
-                {others && others.map((DocComponent, i) => <DocComponent key={i} componentName={componentName} />)}
-            </tbody>
-        </table>
+        <ul className="item-list">
+            <DocElement
+                code={<CodeTags type="secondary" code={`dg.${componentName}.init()`} />}
+                description={
+                    <>
+                        <Link to="/docs/getting-started/javascript">Initializes</Link> {componentName}
+                    </>
+                }
+            />
+            {open ? <OpenDocs componentName={componentName} /> : null}
+            {close ? <CloseDocs componentName={componentName} /> : null}
+            {others && others.map((DocComponent, i) => <DocComponent key={i} componentName={componentName} />)}
+        </ul>
     </>
 );
 

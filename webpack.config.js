@@ -37,7 +37,6 @@ module.exports = (env, argv) => {
             extensions: [".js", ".jsx", ".json"]
         },
         output: {
-            library: brand,
             path: path.resolve(__dirname, `dist${basename}`),
             filename: "scripts/[name].js?[hash]",
             chunkFilename: "scripts/[name].js?[hash]",
@@ -333,10 +332,6 @@ module.exports = (env, argv) => {
                 onEnd: [
                     {
                         copy: [
-                            {
-                                source: `./src/img/${brand}/logo/swedbankpay-logo.png`,
-                                destination: `./dist${basename}img`
-                            },
                             {
                                 source: `./src/img/${brand}/resources/typography/*.png`,
                                 destination: `./dist${basename}img/typography`

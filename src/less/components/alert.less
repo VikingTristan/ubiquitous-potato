@@ -14,20 +14,8 @@
     }
     /* stylelint-enable selector-list-comma-newline-after */
 
-    &.alert-default {
-        .alert-variant(@text-gray, @light-gray);
-
-        .alert-icon {
-            color: @text-gray;
-        }
-    }
-
     &.alert-success {
         .alert-variant(@brand-success, @brand-success-light);
-    }
-
-    &.alert-neutral {
-        .alert-variant(@brand-info, @brand-info-light);
     }
 
     &.alert-warning {
@@ -39,7 +27,7 @@
     }
 
     &.alert-informative {
-        .alert-variant(@brand-accent, @brand-bg-2);
+        .alert-variant(@brand-info, @brand-info-light);
     }
 
 
