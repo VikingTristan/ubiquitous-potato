@@ -66,8 +66,9 @@ jobs:
         id: zip
         run: | 
           ZIPFILE=DesignGuide-${{ steps.gitversion.outputs.majorMinorPatch }}.zip
-          zip -r ${ ZIPFILE } dist
-          echo ::set-output name=zipfile::${ ZIPFILE }
+          echo "Zipping ${ZIPFILE}"
+          zip -r ${ZIPFILE} dist
+          echo ::set-output name=zipfile::${ZIPFILE}
 
       - name: Azure Login
         uses: azure/login@v1
