@@ -1,4 +1,5 @@
 .topbar {
+    border-top: @topbar-border-top;
     background-color: @white;
     margin: 0 auto;
     height: @topbar-height;
@@ -10,6 +11,27 @@
     padding: 0 1.25rem;
     position: relative;
 
+    &.topbar-sticky {
+        position: sticky;
+        top: 0;
+        box-shadow: 0 4px 4px rgba(227, 209, 195, 0.25);
+    }
+
+    each(@grid-breakpoints, .(@min-width, @infix) {
+        &.topbar-min-@{infix}-sticky {
+            @media screen and (min-width: @min-width) {
+                .topbar-sticky();
+            }
+        }
+    });
+
+    each(@grid-breakpoints-max, .(@max-width, @infix) {
+        &.topbar-max-@{infix}-sticky {
+            @media screen and (max-width: @max-width) {
+                .topbar-sticky();
+            }
+        }
+    });
 
     .topbar-logo {
         width: 130px;
@@ -73,7 +95,7 @@
             display: inline-flex;
             align-items: center;
             position: absolute;
-            font-weight: normal;
+            font-weight: @font-weight-normal;
             font-family: @brand-headline;
             text-align: center;
             text-decoration: none;
@@ -166,7 +188,8 @@
 
             > a {
                 font-family: @brand-headline;
-                color: @black;
+                font-weight: @font-weight-normal;
+                color: @text-gray;
                 cursor: pointer;
                 text-decoration: none;
                 display: flex;
@@ -179,25 +202,46 @@
                     user-select: none;
                 }
 
-                &.active {
+                &:hover {
                     > span {
-                        position: relative;
-
                         &:before {
-                            content: "";
-                            position: absolute;
-                            background-color: @brand-primary;
-                            height: 4px;
-                            bottom: -4px;
-                            left: 0;
-                            right: 0;
+                            width: 100%;
+                            transition: width 0.4s;
                         }
+                    }
+                }
+
+                &.active {
+                    color: @black;
+
+                    > span {
+                        &:before {
+                            width: 100%;
+                        }
+                    }
+                }
+
+                > span {
+                    position: relative;
+
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        background-color: @brand-primary;
+                        height: 4px;
+                        bottom: -4px;
+                        left: 0;
+                        right: 0;
+                        margin-left: auto;
+                        margin-right: auto;
+                        width: 0;
                     }
                 }
             }
 
             .topbar-link-right {
                 margin-left: auto;
+                color: @black;
 
                 .material-icons {
                     margin: 0;
@@ -233,6 +277,7 @@
         align-items: center;
         flex-direction: row-reverse;
         font-family: @brand-headline;
+        font-weight: @font-weight-normal;
         color: @brand-secondary-dark-2;
         cursor: pointer;
         text-decoration: none;
@@ -259,25 +304,38 @@
 
             > a:not(.close-topbar-nav) {
                 margin-top: 8px;
-            }
 
-            > *:not(.close-topbar-nav):not(.topbar-link-right) {
-                text-decoration: none;
-                padding: 0 0.5rem;
+                &:hover {
+                    > span {
+                        &:before {
+                            width: 100%;
+                            transition: width 0.4s;
+                        }
+                    }
+                }
 
                 &.active {
                     > span {
-                        position: relative;
-
                         &:before {
-                            content: "";
-                            position: absolute;
-                            background-color: @brand-primary;
-                            height: 4px;
-                            bottom: -4px;
-                            left: 0;
-                            right: 0;
+                            width: 100%;
                         }
+                    }
+                }
+
+                > span {
+                    position: relative;
+
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        background-color: @brand-primary;
+                        height: 4px;
+                        bottom: -4px;
+                        left: 0;
+                        right: 0;
+                        margin-left: auto;
+                        margin-right: auto;
+                        width: 0;
                     }
                 }
 
@@ -287,6 +345,12 @@
                         display: none;
                     }
                 }
+            }
+
+            > *:not(.close-topbar-nav):not(.topbar-link-right) {
+                text-decoration: none;
+                margin-left: 1.25rem;
+                margin-right: 1.25rem;
             }
 
             .close-topbar-nav {

@@ -1,6 +1,7 @@
 import { init } from "~/node_modules/@sentry/browser";
 import "@src/polyfills";
 
+import accordion from "./accordion";
 import actionList from "./action-list";
 import alert from "./alert";
 import datepicker from "./datepicker";
@@ -9,6 +10,7 @@ import expandable from "./expandable";
 import nav from "./nav";
 import rangeslider from "./rangeslider";
 import sheet from "./sheet";
+import sidebar from "./sidebar";
 import script from "./script";
 import tabs from "./tabs";
 import toast from "./toast";
@@ -33,6 +35,7 @@ document.addEventListener("mousedown", () => { document.body.classList.add("inte
 document.addEventListener("keydown", () => { document.body.classList.remove("intent-mouse"); });
 
 const dg = {
+    accordion,
     actionList,
     alert,
     datepicker,
@@ -41,6 +44,7 @@ const dg = {
     nav,
     rangeslider,
     sheet,
+    sidebar,
     script,
     tabs,
     toast,

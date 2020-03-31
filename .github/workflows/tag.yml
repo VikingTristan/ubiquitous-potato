@@ -19,6 +19,7 @@ jobs:
 
       # Set brand specific variables
       - name: Environment variables
+        id: variables
         run: |
           chmod +x ./.github/scripts/variables.sh
           ./.github/scripts/variables.sh
@@ -59,7 +60,11 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run $BRAND_BUILD_SCRIPT -- --env.release=true --env.baseUrl="$BRAND_URL" --env.basename="v/${{ steps.gitversion.outputs.majorMinorPatch }}" --env.semver=${{ steps.gitversion.outputs.semVer }} --env.info_version=${{ steps.gitversion.outputs.informationalVersion }} --env.github_actions=true
+        run: npm run ${{ steps.variables.outputs.BUILD_SCRIPT }} -- --env.release=true --env.baseUrl="${{ steps.variables.outputs.BRAND_URL }}" --env.basename="v/${{ steps.gitversion.outputs.majorMinorPatch }}" --env.semver=${{ steps.gitversion.outputs.semVer }} --env.info_version=${{ steps.gitversion.outputs.informationalVersion }} --env.github_actions=true
+
+      - name: Zip Release
+        id: zip-release
+        run: zip -r DesignGuide-${{ steps.gitversion.outputs.majorMinorPatch }}.zip dist
 
       - name: Azure Login
         uses: azure/login@v1
@@ -70,4 +75,26 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az storage blob upload-batch -s dist -d \$web --account-name ${{ matrix.brand }}designguide
+            az storage blob upload-batch -s dist -d \$web --account-name ${{ steps.variables.outputs.AZURE_ACCOUNT }}
+
+      - name: Create Release
+        id: create-release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: DesignGuide v${{ steps.gitversion.outputs.majorMinorPatch }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-release.outputs.upload_url }}
+          asset_path: ./DesignGuide-${{ steps.gitversion.outputs.majorMinorPatch }}.zip
+          asset_name: DesignGuide-${{ steps.gitversion.outputs.majorMinorPatch }}.zip
+          asset_content_type: application/zip

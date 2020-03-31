@@ -9,24 +9,37 @@ exports[`Components: Tabs BasicUsage renders 1`] = `
   </h2>
   <p>
     Add class 
-    <Property
-      value=".tabs"
+    <CodeTags
+      code=".tabs"
+      type="secondary"
     />
      to a div containing 
-    <PrismCode
-      className="language-html"
-      component="code"
+    <CodeTags
+      code="<ul>"
+      type="primary"
+    />
+     and nest 
+    <CodeTags
+      code="<li>"
+      type="primary"
+    />
+     as needed. The tabs component will by default cover the whole width of the container at breakpoint 
+    <CodeTags
+      code="sm"
+      type="secondary"
+    />
+    . To specify a larger breakpoint, use 
+    <CodeTags
+      code=".tabs-{breakpoint}"
+      type="secondary"
+    />
+     (see 
+    <Link
+      to="/docs/core/breakpoints"
     >
-      &lt;ul&gt;
-    </PrismCode>
-    and nest 
-    <PrismCode
-      className="language-html"
-      component="code"
-    >
-      &lt;li&gt;
-    </PrismCode>
-     as needed. Make sure that the tabs will not overflow on screens of normal size. Consider revising the design or the decision to use tabs when more than 3 alternatives are present. If using tabs really is necessary, tabs with scroll might be a more suitable alternative.
+      breakpoints
+    </Link>
+     for more information on breakpoints). Make sure that the tabs will not overflow on screens of normal size. Consider revising the design or the decision to use tabs when more than 3 alternatives are present. If using tabs really is necessary, tabs with scroll might be a more suitable alternative.
   </p>
   <ComponentPreview
     codeFigure={true}
@@ -74,12 +87,14 @@ exports[`Components: Tabs TabsScroll renders 1`] = `
   </h2>
   <p>
     To make tabs more mobile friendly, use class 
-    <Property
-      value=".tabs-scroll"
+    <CodeTags
+      code=".tabs-scroll"
+      type="secondary"
     />
-    .
-    <Property
-      value=".tabs-scroll"
+    . 
+    <CodeTags
+      code=".tabs-scroll"
+      type="secondary"
     />
      will make the tabs scrollable in case of overflow. Note that the scrollable property is not optimized for desktop usage. Consider the usage when 4 or more tabs are present.
   </p>

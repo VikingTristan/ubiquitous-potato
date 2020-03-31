@@ -2,7 +2,6 @@ import React, { Component, Suspense } from "react";
 import { Router, Switch, Route, withRouter } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
-import Footer from "@components/Footer";
 import AppHeader from "./AppHeader";
 import { LoadingComponent } from "./utils";
 
@@ -29,8 +28,6 @@ const ScrollToTopComponent = withRouter(ScrollToTop);
 const Home = React.lazy(() => import(/* webpackChunkName: "home.chunk" */ "./Home/index.js"));
 
 const Documentation = React.lazy(() => import(/* webpackChunkName: "documentation.chunk" */ "./Documentation/index.js"));
-
-const Templates = React.lazy(() => import(/* webpackChunkName: "templates.chunk" */ "./Templates/index.js"));
 
 const Resources = React.lazy(() => import(/* webpackChunkName: "templates.chunk" */ "./Resources/index.js"));
 
@@ -65,13 +62,11 @@ class App extends Component {
                         <Switch>
                             <Route exact path="/" component={Home} />
                             <Route path="/docs" component={Documentation} />
-                            <Route path="/tmpl" component={Templates} />
                             <Route path="/res" component={Resources} />
                             <Route path="/404" component={ErrorPage404} />
                             <Route component={ErrorPage404} />
                         </Switch>
                     </Suspense>
-                    <Footer />
                 </ScrollToTopComponent>
             </Router>
         );
