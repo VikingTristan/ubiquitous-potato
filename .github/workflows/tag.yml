@@ -63,8 +63,11 @@ jobs:
         run: npm run ${{ steps.variables.outputs.BUILD_SCRIPT }} -- --env.release=true --env.baseUrl="${{ steps.variables.outputs.BRAND_URL }}" --env.basename="v/${{ steps.gitversion.outputs.majorMinorPatch }}" --env.semver=${{ steps.gitversion.outputs.semVer }} --env.info_version=${{ steps.gitversion.outputs.informationalVersion }} --env.github_actions=true
 
       - name: Zip Release
-        id: zip-release
-        run: zip -r DesignGuide-${{ steps.gitversion.outputs.majorMinorPatch }}.zip dist
+        id: zip
+        run: | 
+          ZIPFILE=DesignGuide-${{ steps.gitversion.outputs.majorMinorPatch }}.zip
+          zip -r ${ ZIPFILE } dist
+          echo ::set-output name=zipfile::${ ZIPFILE }
 
       - name: Azure Login
         uses: azure/login@v1
@@ -78,7 +81,7 @@ jobs:
             az storage blob upload-batch -s dist -d \$web --account-name ${{ steps.variables.outputs.AZURE_ACCOUNT }}
 
       - name: Create Release
-        id: create-release
+        id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -94,7 +97,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create-release.outputs.upload_url }}
-          asset_path: ./DesignGuide-${{ steps.gitversion.outputs.majorMinorPatch }}.zip
-          asset_name: DesignGuide-${{ steps.gitversion.outputs.majorMinorPatch }}.zip
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./${{ steps.zip.outputs.zipfile }}
+          asset_name: ${{ steps.zip.outputs.zipfile }}
           asset_content_type: application/zip
