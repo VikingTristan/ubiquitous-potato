@@ -92,7 +92,7 @@ jobs:
       - name: Create Release
         id: create_release
         # Only create a release on one brand to avoid duplicate error
-        if: contains(matrix.brand, "swedbankpay")
+        if: contains(${{ matrix.brand }}, "swedbankpay")
         # Until https://github.com/actions/create-release/pull/50 is merged, we'll use the following
         # uses: actions/create-release@master
         uses: jbolda/create-release@v1.1.0 # <-- This supports the .md file in body attribute
