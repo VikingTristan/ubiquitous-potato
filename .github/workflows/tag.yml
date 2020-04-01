@@ -77,12 +77,6 @@ jobs:
         with:
           name: ${{ steps.zip.outputs.zipfile }}
           path: ${{ steps.zip.outputs.zipfile }}
-        
-      - name: Upload changelog artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: changelog
-          path: CHANGELOG.md
 
       - name: Azure Login
         uses: azure/login@v1
@@ -124,16 +118,9 @@ jobs:
         with:
           name: SwedbankPay-DesignGuide.zip
 
-      - name: Download changelog artifact
-        uses: actions/download-artifact@v1
-        with:
-          name: changelog
-
       - name: Read CHANGELOG
         id: changelog
         run: |
-          ls -la
-          unzip changelog
           echo "::set-output name=body::$(cat CHANGELOG.md)"
 
       - name: Create Release
