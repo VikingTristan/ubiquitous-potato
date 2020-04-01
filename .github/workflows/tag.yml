@@ -100,11 +100,19 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Download artifacts
+      - name: Download PayEx artifact
         uses: actions/download-artifact@v1
         with:
           name: PayEx-DesignGuide.zip
+
+      - name: Download SwedbankPay artifact
+        uses: actions/download-artifact@v1
+        with:
           name: SwedbankPay-DesignGuide.zip
+
+      - name: Download changelog artifact
+        uses: actions/download-artifact@v1
+        with:
           name: changelog
 
       - name: Read CHANGELOG
