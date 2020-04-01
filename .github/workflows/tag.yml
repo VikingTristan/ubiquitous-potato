@@ -100,6 +100,20 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+
+      - name: Fetch all history for all tags and branches
+        run: git fetch --prune --unshallow
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.6.1
+        with:
+          versionSpec: '5.1.x'
+
+      - name: Use GitVersion
+        id: gitversion # step id used as reference for output values
+        uses: gittools/actions/gitversion/execute@v0.6.1
+
       - name: Download PayEx artifact
         uses: actions/download-artifact@v1
         with:
@@ -118,6 +132,8 @@ jobs:
       - name: Read CHANGELOG
         id: changelog
         run: |
+          ls -la
+          unzip changelog
           echo "::set-output name=body::$(cat CHANGELOG.md)"
 
       - name: Create Release
