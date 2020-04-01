@@ -88,43 +88,12 @@ jobs:
         with:
           inlineScript: |
             az storage blob upload-batch -s dist -d \$web --account-name ${{ steps.variables.outputs.AZURE_ACCOUNT }}
-
-  release:
-    name: Create release
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Fetch all history for all tags and branches
-        run: git fetch --prune --unshallow
-
-      - name: Install GitVersion
-        uses: gittools/actions/gitversion/setup@v0.6.1
-        with:
-          versionSpec: '5.1.x'
-
-      - name: Use GitVersion
-        id: gitversion
-        uses: gittools/actions/gitversion/execute@v0.6.1
-
-      - name: Download PayEx artifact
-        uses: actions/download-artifact@v1
-        with:
-          name: PayEx-DesignGuide.zip
-
-      - name: Download SwedbankPay artifact
-        uses: actions/download-artifact@v1
-        with:
-          name: SwedbankPay-DesignGuide.zip
-
-      # - name: Read CHANGELOG
-      #   id: changelog
-      #   run: |
-      #     echo "::set-output name=body::$(cat CHANGELOG.md)"
-
+    
       - name: Create Release
         id: create_release
+        # Only create a release on one brand to avoid duplicate error
+        if: contains(matrix.brand, "swedbankpay")
+        # Until https://github.com/actions/create-release/pull/50 is merged, we'll use the following
         # uses: actions/create-release@master
         uses: jbolda/create-release@v1.1.0 # <-- This supports the .md file in body attribute
         env:
@@ -132,18 +101,8 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Design Guide v${{ steps.gitversion.outputs.majorMinorPatch }}
-          # body: ${{ steps.changelog.outputs.body }}
           bodyFromFile: CHANGELOG.md
           draft: false
           prerelease: false
 
-      - name: Upload Release Asset
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: PayEx-DesignGuide.zip
-          asset_name: PayEx-DesignGuide.zip
-          asset_content_type: application/zip
+      
