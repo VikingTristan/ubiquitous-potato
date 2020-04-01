@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Build and deploy
+    name: Build and deploy release
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -64,11 +64,25 @@ jobs:
 
       - name: Zip Release
         id: zip
+        env:
+          BRAND: ${{ steps.variables.outputs.BRAND_NAME }}
         run: | 
-          ZIPFILE=DesignGuide-${{ steps.gitversion.outputs.majorMinorPatch }}.zip
+          ZIPFILE=${BRAND}-DesignGuide.zip
           echo "Zipping ${ZIPFILE}"
           zip -r ${ZIPFILE} dist
           echo ::set-output name=zipfile::${ZIPFILE}
+
+      - name: Upload zipfile artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ steps.zip.outputs.zipfile }}
+          path: ${{ steps.zip.outputs.zipfile }}
+        
+      - name: Upload changelog artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: changelog
+          path: CHANGELOG.md
 
       - name: Azure Login
         uses: azure/login@v1
@@ -81,6 +95,23 @@ jobs:
           inlineScript: |
             az storage blob upload-batch -s dist -d \$web --account-name ${{ steps.variables.outputs.AZURE_ACCOUNT }}
 
+  release:
+    name: Create release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v1
+        with:
+          name: PayEx-DesignGuide.zip
+          name: SwedbankPay-DesignGuide.zip
+          name: changelog
+
+      - name: Read CHANGELOG
+        id: changelog
+        run: |
+          echo "::set-output name=body::$(cat CHANGELOG.md)"
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -89,6 +120,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: DesignGuide v${{ steps.gitversion.outputs.majorMinorPatch }}
+          body: ${{ steps.changelog.outputs.body }}
           draft: false
           prerelease: false
 
@@ -99,6 +131,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./${{ steps.zip.outputs.zipfile }}
-          asset_name: ${{ steps.zip.outputs.zipfile }}
+          asset_path: ./PayEx-DesignGuide.zip
+          asset_name: PayEx-DesignGuide.zip
           asset_content_type: application/zip
