@@ -40,7 +40,7 @@ jobs:
           versionSpec: '5.1.x'
 
       - name: Use GitVersion
-        id: gitversion # step id used as reference for output values
+        id: gitversion
         uses: gittools/actions/gitversion/execute@v0.6.1
 
       - name: Set Node.js 12.x
@@ -105,7 +105,7 @@ jobs:
           versionSpec: '5.1.x'
 
       - name: Use GitVersion
-        id: gitversion # step id used as reference for output values
+        id: gitversion
         uses: gittools/actions/gitversion/execute@v0.6.1
 
       - name: Download PayEx artifact
@@ -125,12 +125,12 @@ jobs:
 
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: actions/create-release@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: DesignGuide v${{ steps.gitversion.outputs.majorMinorPatch }}
+          release_name: Design Guide v${{ steps.gitversion.outputs.majorMinorPatch }}
           body: ${{ steps.changelog.outputs.body }}
           draft: false
           prerelease: false
