@@ -111,6 +111,8 @@ jobs:
           prerelease: false
 
       - name: Upload Release Assets
+        # Only upload assets on one brand to avoid duplicate error
+        if: contains(matrix.brand, 'swedbankpay')
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
