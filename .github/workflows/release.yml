@@ -76,7 +76,7 @@ jobs:
         run: | 
           ZIPFILE=${BRAND}-DesignGuide.zip
           echo "Zipping ${ZIPFILE}"
-          zip -r ${ZIPFILE} dist
+          zip -r ${ZIPFILE} dist/release
           echo ::set-output name=zipfile::${ZIPFILE}
 
       - name: Upload zipfile artifact
@@ -100,17 +100,6 @@ jobs:
         id: create_release
         # Only create a release on one brand to avoid duplicate error
         if: contains(matrix.brand, 'swedbankpay')
-        # Until https://github.com/actions/create-release/pull/50 is merged, we'll use the jbolda package
-        # uses: actions/create-release@master
-        # uses: jbolda/create-release@v1.1.0 # <-- This supports the .md file in body attribute
-        # env:
-        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        # with:
-        #   tag_name: ${{ github.ref }}
-        #   release_name: Design Guide v${{ steps.gitversion.outputs.majorMinorPatch }}
-        #   bodyFromFile: CHANGELOG.md
-        #   draft: false
-        #   prerelease: false
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -120,3 +109,14 @@ jobs:
           body_path: RELEASE_NOTES.md
           draft: false
           prerelease: false
+
+      - name: Upload Release Assets
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ steps.zip.outputs.zipfile }}
+          asset_name: ${{ steps.zip.outputs.zipfile }}
+          asset_content_type: application/zip
+        
