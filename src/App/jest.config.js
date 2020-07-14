@@ -1,4 +1,5 @@
 module.exports = {
+    rootDir: process.cwd(),
     collectCoverageFrom: [
         "**/*.{js,jsx}"
     ],
