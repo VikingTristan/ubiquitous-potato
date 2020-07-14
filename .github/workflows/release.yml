@@ -102,12 +102,21 @@ jobs:
         if: contains(matrix.brand, 'swedbankpay')
         # Until https://github.com/actions/create-release/pull/50 is merged, we'll use the jbolda package
         # uses: actions/create-release@master
-        uses: jbolda/create-release@v1.1.0 # <-- This supports the .md file in body attribute
+        # uses: jbolda/create-release@v1.1.0 # <-- This supports the .md file in body attribute
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # with:
+        #   tag_name: ${{ github.ref }}
+        #   release_name: Design Guide v${{ steps.gitversion.outputs.majorMinorPatch }}
+        #   bodyFromFile: CHANGELOG.md
+        #   draft: false
+        #   prerelease: false
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
           release_name: Design Guide v${{ steps.gitversion.outputs.majorMinorPatch }}
-          bodyFromFile: CHANGELOG.md
+          body_path: RELEASE_NOTES.md
           draft: false
           prerelease: false
