@@ -1,5 +1,5 @@
 module.exports = {
-    projects: ["<rootDir>/src/app", "<rootDir>/src/scripts"],
+    projects: ["./src/app", "./src/scripts"],
     collectCoverage: true,
     coverageDirectory: "coverage",
     coverageReporters: [
