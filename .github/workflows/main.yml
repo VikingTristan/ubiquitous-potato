@@ -50,7 +50,14 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install
-        run: npm ci
+        run: |
+          npm ci
+          npm i -g codecov
+
+      - name: Tests and linting
+        run: |
+          npm run lint
+          npm run test:codecov
 
       - name: Build
         run: npm run ${{ steps.variables.outputs.BUILD_SCRIPT }} -- --env.baseUrl="${{ steps.variables.outputs.BRAND_URL }}" --env.basename=${{ steps.gitversion.outputs.branchName }} --env.semver=${{ steps.gitversion.outputs.semVer }} --env.info_version=${{ steps.gitversion.outputs.informationalVersion }} --env.github_actions=true
