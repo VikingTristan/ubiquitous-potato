@@ -76,7 +76,7 @@ jobs:
         run: | 
           ZIPFILE=${BRAND}-DesignGuide.zip
           echo "Zipping ${ZIPFILE}"
-          zip -r ${ZIPFILE} dist/release
+          zip -r ${ZIPFILE} dist
           echo ::set-output name=zipfile::${ZIPFILE}
 
       - name: Upload zipfile artifact
