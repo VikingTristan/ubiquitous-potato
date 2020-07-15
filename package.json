@@ -14,7 +14,7 @@
         "build:prod:payex": "webpack --mode production --brand payex",
         "test": "jest",
         "test:update": "jest --updateSnapshot",
-        "test:codecov": "jest && codecov --rootDir .",
+        "test:codecov": "jest && codecov --config=jest.config.js",
         "eslint": "eslint src/**/*.js",
         "stylelint": "stylelint src/**/*.less",
         "lint": "npm run eslint && npm run stylelint",
