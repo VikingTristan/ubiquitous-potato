@@ -1,7 +1,8 @@
 module.exports = {
     // projects: ["<rootDir>/src/app", "<rootDir>/src/scripts"],
+    rootDir: ".",
     moduleNameMapper: {
-        "\\.(svg)$": "./__mocks__/svgMock.js"
+        "\\.(svg)$": "<rootDir>/__mocks__/svgMock.js"
     },
     collectCoverage: true,
     collectCoverageFrom: [
@@ -14,13 +15,16 @@ module.exports = {
         "text-summary"
     ],
     setupFiles: [
-        "./jest.setup.js"
+        "<rootDir>/jest.setup.js"
     ],
     snapshotSerializers: [
         "enzyme-to-json/serializer"
     ],
+    testMatch: [
+        "<rootDir>/src/App/**/*.test.js"
+    ],
     testPathIgnorePatterns: [
         "\\.spec\\.js",
-        "./Documentation/utils/ComponentPreview/"
+        "<rootDir>/src/Documentation/utils/ComponentPreview/"
     ]
 };
