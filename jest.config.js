@@ -6,7 +6,8 @@ module.exports = {
     },
     collectCoverage: true,
     collectCoverageFrom: [
-        "**/*.{js,jsx}"
+        // "**/*.{js,jsx}"
+        "<rootDir>/src/App/**/*.{js,jsx}"
     ],
     coverageDirectory: "coverage",
     coverageReporters: [
@@ -24,7 +25,8 @@ module.exports = {
         "<rootDir>/src/App/**/*.test.js"
     ],
     testPathIgnorePatterns: [
-        "\\.spec\\.js",
-        "<rootDir>/src/Documentation/utils/ComponentPreview/"
+        "*.spec.js",
+        "<rootDir>/src/App/Documentation/utils/ComponentPreview/",
+        "<rootDir>/dist/"
     ]
 };
