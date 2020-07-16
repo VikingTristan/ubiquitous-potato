@@ -25,7 +25,7 @@ module.exports = {
         "<rootDir>/src/App/**/*.test.js"
     ],
     testPathIgnorePatterns: [
-        "*.spec.js",
+        "\\.spec\\.js",
         "<rootDir>/src/App/Documentation/utils/ComponentPreview/",
         "<rootDir>/dist/"
     ]
