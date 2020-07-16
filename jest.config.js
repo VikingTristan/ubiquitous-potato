@@ -27,6 +27,7 @@ module.exports = {
     testPathIgnorePatterns: [
         "\\.spec\\.js",
         "<rootDir>/src/App/Documentation/utils/ComponentPreview/",
+        "<rootDir>/src/App/Documentation/utils/JavascriptDocs/",
         "<rootDir>/dist/"
     ]
 };
