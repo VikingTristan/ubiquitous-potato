@@ -5,4 +5,4 @@
 ### Fixed
 
 - Sheet
-  - Fixed a scroll bug whenever a user navigated away from a route without closing a sheet
+  - Fixed a scroll bug whenever a user navigated away from a route without closing a sheet 
