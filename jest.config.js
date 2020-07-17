@@ -22,7 +22,8 @@ module.exports = {
         "enzyme-to-json/serializer"
     ],
     testMatch: [
-        "<rootDir>/src/App/**/*.test.js"
+        "<rootDir>/src/App/**/*.test.js",
+        "<rootDir>/src/scripts/**/*.test.js"
     ],
     testPathIgnorePatterns: [
         "\\.spec\\.js",
