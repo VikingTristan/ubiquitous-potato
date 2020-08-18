@@ -1,10 +1,13 @@
 .sidebar {
     position: sticky;
-    top: 0.5rem;
-    margin-top: 0.5rem;
+    top: 0;
 
     &.sidebar-topbar-sticky {
-        top: calc(@topbar-height + 0.5rem);
+        top: @topbar-height;
+
+        .sidebar-nav {
+            max-height: calc(100vh - @topbar-height);
+        }
     }
 
     each(@grid-breakpoints, .(@min-width, @infix) {
@@ -24,7 +27,7 @@
     });
 
     .sidebar-nav {
-        max-height: calc(100vh - 1rem);
+        max-height: 100vh;
         overflow-y: auto;
 
         .main-nav-ul {
@@ -59,8 +62,9 @@
                 .nav-group-heading {
                     cursor: pointer;
                     display: flex;
-                    align-items: center;
-                    height: 2.5rem;
+                    align-items: flex-start;
+                    min-height: 2.5rem;
+                    padding: 0.5rem 0;
 
                     &:hover,
                     &:focus {
@@ -89,7 +93,7 @@
                         padding-left: 0.5rem;
                         font-family: @brand-headline;
                         font-weight: @font-weight-normal;
-                        font-size: 1rem;
+                        font-size: 1.125rem;
                         line-height: 1.5rem;
                     }
                 }
@@ -119,8 +123,9 @@
                         .nav-subgroup-heading {
                             cursor: pointer;
                             display: flex;
-                            align-items: center;
-                            height: 2.5rem;
+                            align-items: flex-start;
+                            min-height: 2.5rem;
+                            padding: 0.5rem 0;
 
                             &:hover,
                             &:focus {
@@ -186,12 +191,23 @@
                             }
                         }
 
+                        &.nav-subgroup-leaf {
+                            &:before {
+                                display: none;
+                            }
+
+                            a {
+                                font-size: 1rem;
+                                padding: 0.625rem 0 0.625rem 3rem;
+                            }
+                        }
+
                         a {
                             font-size: 0.875rem;
                             line-height: 1.25rem;
                             color: @brand-secondary;
                             text-decoration: none;
-                            padding: 0.625rem 1.75rem 0.625rem;
+                            padding: 0.625rem 1.75rem;
                             width: 100%;
                             height: 100%;
                         }

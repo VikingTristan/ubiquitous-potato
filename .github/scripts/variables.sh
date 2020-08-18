@@ -9,5 +9,5 @@ elif [ "$BRAND" == "swedbankpay" ]; then
     echo ::set-output name=AZURE_ACCOUNT::swedpaydesignguidetest
     echo ::set-output name=BUILD_SCRIPT::build:prod
 else
-    echo "Unknown brand!"
+    echo "Unknown brand '$BRAND'!"
 fi

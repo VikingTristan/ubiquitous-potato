@@ -9,7 +9,7 @@
             "paths": [
                 {
                     "rootPathPrefix": "~",
-                    "rootPathSuffix": "./" 
+                    "rootPathSuffix": "./"
                 },
                 {
                     "rootPathPrefix": "@src",
@@ -21,7 +21,7 @@
                 },
                 {
                     "rootPathPrefix": "@docutils",
-                    "rootPathSuffix": "./src/App/Documentation/utils"
+                    "rootPathSuffix": "./src/App/docutils"
 
                 },
                 {
