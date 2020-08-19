@@ -5,22 +5,22 @@ on:
 
 jobs:
   build:
-    name: Hello world
+    name: Storage container cleanup
     runs-on: ubuntu-latest
     strategy:
       matrix:
         brand: ["payex", "swedbankpay"]
     steps:
+      - uses: actions/checkout@v2
+        with:
+        fetch-depth: 0
+
         # Set brand specific variables
       - name: Environment variables
         id: variables
         run: ./.github/scripts/variables.sh
         env:
           BRAND: ${{ matrix.brand }}
-
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
 
       - name: Azure Login
         uses: azure/login@v1
