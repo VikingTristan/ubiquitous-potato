@@ -1,0 +1,12 @@
+name: Janitor
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+
+jobs:
+  build:
+    name: Hello world
+    runs on: ubuntu-latest
+    steps:
+      - name: Echo
+        run: echo "Hello"
