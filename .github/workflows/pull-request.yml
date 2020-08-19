@@ -14,11 +14,7 @@ jobs:
       # Set brand specific variables
       - name: Environment variables
         id: variables
-        # "git config core.filemode false" is set to disregard local rwx changes in git [THN]
-        run: |
-          git config core.filemode false
-          chmod +x ./.github/scripts/variables.sh
-          ./.github/scripts/variables.sh
+        run: ./.github/scripts/variables.sh
         env:
           BRAND: ${{ matrix.brand }}
 
@@ -32,20 +28,15 @@ jobs:
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          restore-keys: ${{ runner.os }}-node-
 
       - name: Install
-        run: |
-          npm ci
-          npm i -g codecov
+        run: npm ci && npm i -g codecov
 
       - name: Tests and linting
-        run: |
-          npm run lint
-          npm run test:codecov
+        run: npm run lint && npm run test:codecov
 
-      - uses: preactjs/compressed-size-action@v1
+      - uses: preactjs/compressed-size-action@v2
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           # basename=PullRequest is added to avoid BundleAnalyzer from holding up the agent [THN]
