@@ -22,7 +22,11 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
 
       - name: Check if commit is merge commit
+        id: branch
         run: ./.github/scripts/janitor.sh ${{ github.sha }}
+
+      - name: Test variable
+        run: echo "${{ steps.branch.outputs.BRANCH_TO_DELETE }}"
 
         # Set brand specific variables
     #   - name: Environment variables

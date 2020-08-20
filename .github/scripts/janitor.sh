@@ -33,11 +33,12 @@ do
         [[ $branch == *"master" ]] && continue
         
         echo "Branch folder we are looking to delete is $branch"
-        branch_to_delete=$branch
+        echo ::set-output name=BRANCH_TO_DELETE::$branch
+        #branch_to_delete=$branch
 
-        if [ -d "$branch_to_delete" ]; then
+        # if [ -d "$branch_to_delete" ]; then
             # Delete the directory from Azure
-        fi
+        # fi
     done
 done
 
