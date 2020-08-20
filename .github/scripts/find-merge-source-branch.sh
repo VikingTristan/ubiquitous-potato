@@ -16,9 +16,8 @@ if [ -z "$current_commit_id" ]; then
     exit 1
 fi
 
-git fetch --all
-
 # Ensure that we have all branches
+git fetch --all
 git branch -r | grep -v '\->' | while read remote; do
   branch_name="${remote#origin/}"
 
@@ -31,7 +30,6 @@ git branch -r | grep -v '\->' | while read remote; do
 done
 
 git pull --ff-only --all
-git branch -vv
 
 # Get the parents. Will return 3 commit IDs, the first being the current
 shas=$(git rev-list --parents -n 1 $current_commit_id)
