@@ -26,7 +26,7 @@ jobs:
         run: ./.github/scripts/janitor.sh ${{ github.sha }}
 
       - name: Test variable
-        if: ${{ steps.branch.outputs.BRANCH_TO_DELETE }}
+        # if: ${{ steps.branch.outputs.BRANCH_TO_DELETE }}
         run: echo Hello there branch $BRANCH
         env:
           BRANCH: ${{ steps.branch.outputs.BRANCH_TO_DELETE }}

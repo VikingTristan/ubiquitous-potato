@@ -28,6 +28,8 @@ do
     echo "$branches" | while read branch ; do
         # branch=$line
 
+        echo "Looping through branch $branch"
+
         # Skip develop and master branches
         [[ $branch == *"develop" ]] && continue
         [[ $branch == *"master" ]] && continue
