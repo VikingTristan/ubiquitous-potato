@@ -28,7 +28,8 @@ git branch -r | grep -v '\->' | while read remote; do
 done
 
 git fetch --all
-git pull --all
+git pull --ff-only --all
+git branch -vv
 
 # Get the parents. Will return 3 commit IDs, the first being the current
 shas=$(git rev-list --parents -n 1 $current_commit_id)
