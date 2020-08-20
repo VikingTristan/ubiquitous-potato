@@ -21,12 +21,6 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}  
         run: echo "$GITHUB_CONTEXT"
 
-      - name: Pull all branches
-        run: |
-          git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
-          git fetch --all
-          git pull --all
-
       - name: Check if commit is merge commit
         id: branch
         run: ./.github/scripts/janitor.sh ${{ github.sha }}
