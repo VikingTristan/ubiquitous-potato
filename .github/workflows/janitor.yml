@@ -31,4 +31,4 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az storage blob delete-batch -s "$web" --pattern feature/test --account-name ${{ steps.variables.outputs.AZURE_ACCOUNT }}
+            az storage blob delete-batch -s "\$web" --pattern feature/test --account-name ${{ steps.variables.outputs.AZURE_ACCOUNT }}
