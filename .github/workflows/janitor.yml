@@ -1,7 +1,8 @@
 name: Janitor
 on:
-  schedule:
-    - cron: "*/5 * * * *"
+  push:
+    branches:
+      - "develop"
 
 jobs:
   build:
@@ -13,23 +14,37 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          fetch-depth: 2
+
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
+      # - name: Check if commit is merge commit
+      #   if: github.head_ref != ''
+      #   run: |
+      #   if []
+      #     if [ -z "$(git rev-list -1 --merges HEAD~1..HEAD)" ]; then
+
+      #     fi
+      #     if [] ; ... awdawdawdawd
 
         # Set brand specific variables
-      - name: Environment variables
-        id: variables
-        run: ./.github/scripts/variables.sh
-        env:
-          BRAND: ${{ matrix.brand }}
+    #   - name: Environment variables
+    #     id: variables
+    #     run: ./.github/scripts/variables.sh
+    #     env:
+    #       BRAND: ${{ matrix.brand }}
 
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+    #   - name: Azure Login
+    #     uses: azure/login@v1
+    #     with:
+    #       creds: ${{ secrets.AZURE_CREDENTIALS }}
   
-      - name: Delete feature folders
-        uses: azure/CLI@v1
-        with:
-          inlineScript: |
-            date=`date -d "14 days ago" '+%Y-%m-%dT%H:%MZ'`
-            az storage blob delete-batch -s "\$web" --pattern feature/** --if-unmodified-since $date --account-name ${{ steps.variables.outputs.AZURE_ACCOUNT }}
+    #   - name: Delete feature folders
+    #     uses: azure/CLI@v1
+    #     with:
+    #       inlineScript: |
+    #         date=`date -d "14 days ago" '+%Y-%m-%dT%H:%MZ'`
+    #         az storage blob delete-batch -s "\$web" --pattern feature/** --if-unmodified-since $date --account-name ${{ steps.variables.outputs.AZURE_ACCOUNT }}
