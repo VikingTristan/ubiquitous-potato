@@ -19,7 +19,7 @@ fi
 # Ensure that we have all branches
 git fetch --all
 git branch -r | grep -v '\->' | while read remote; do
-  branch_name="${remote#origin/}"
+  branch_name="${remote#origin/}" 
 
   if git show-ref --verify --quiet "refs/heads/$branch_name" ; then
     echo "Branch '$branch_name' already exists."
@@ -51,21 +51,7 @@ do
         
         echo "Branch folder we are looking to delete is $branch"
         echo ::set-output name=BRANCH_TO_DELETE::$branch
-        #branch_to_delete=$branch
 
-        # if [ -d "$branch_to_delete" ]; then
-            # Delete the directory from Azure
-        # fi
+        # Delete feature branch
     done
 done
-
-# Loop through $shas, skip the one equal to ${{ github.sha }}
-#   ...do loop here ...
-#   Find the branches that contains the commits:
-# Exclude develop, master, etc., and hopefully only have 1 'feature/*' branch left.
-
-# if []
-#     if [ -z "$(git rev-list -1 --merges HEAD~1..HEAD)" ]; then
-
-#     fi
-#     if [] ; ... awdawdawdawd
