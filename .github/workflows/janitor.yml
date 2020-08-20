@@ -19,7 +19,7 @@ jobs:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
+        run: echo "$GITHUB_CONTEXT" 
 
       # - name: Check if commit is merge commit
       #   if: github.head_ref != ''
