@@ -16,6 +16,20 @@ if [ -z "$current_commit_id" ]; then
     exit 1
 fi
 
+# Ensure that we have all branches
+git branch -r | grep -v '\->' | while read remote; do
+  branch_name="${remote#origin/}"
+
+  if git show-ref --verify --quiet "refs/heads/$branch_name" ; then
+    echo "$branch_name already exists."
+  else
+    git branch --track "$branch_name" "$remote";
+  fi
+done
+
+git fetch --all
+git pull --all
+
 # Get the parents. Will return 3 commit IDs, the first being the current
 shas=$(git rev-list --parents -n 1 $current_commit_id)
 for sha in $shas
