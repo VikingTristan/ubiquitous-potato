@@ -16,18 +16,20 @@ if [ -z "$current_commit_id" ]; then
     exit 1
 fi
 
+git fetch --all
+
 # Ensure that we have all branches
 git branch -r | grep -v '\->' | while read remote; do
   branch_name="${remote#origin/}"
 
   if git show-ref --verify --quiet "refs/heads/$branch_name" ; then
-    echo "$branch_name already exists."
+    echo "Branch '$branch_name' already exists."
   else
+    echo "Adding '$branch_name' tracking '$remote'."
     git branch --track "$branch_name" "$remote";
   fi
 done
 
-git fetch --all
 git pull --ff-only --all
 git branch -vv
 
