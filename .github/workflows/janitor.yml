@@ -21,14 +21,8 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT" 
 
-      # - name: Check if commit is merge commit
-      #   if: github.head_ref != ''
-      #   run: |
-      #   if []
-      #     if [ -z "$(git rev-list -1 --merges HEAD~1..HEAD)" ]; then
-
-      #     fi
-      #     if [] ; ... awdawdawdawd
+      - name: Check if commit is merge commit
+        run: ./.github/scripts/janitor.sh ${{ github.sha }}
 
         # Set brand specific variables
     #   - name: Environment variables
