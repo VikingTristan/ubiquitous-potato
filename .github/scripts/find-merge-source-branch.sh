@@ -33,7 +33,7 @@ git pull --ff-only --all
 
 # Get the parents. Will return 3 commit IDs, the first being the current
 shas=$(git rev-list --parents -n 1 $current_commit_id)
-for sha in $shas
+for sha in $shas 
 do
     # Skip the SHA equal to the current commit
     [[ $sha == "$current_commit_id" ]] && continue
