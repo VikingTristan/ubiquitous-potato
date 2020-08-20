@@ -31,4 +31,5 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az storage blob delete-batch -s "\$web" --pattern feature/test --account-name ${{ steps.variables.outputs.AZURE_ACCOUNT }}
+            date=`date -d "14 days ago" '+%Y-%m-%dT%H:%MZ'`
+            az storage blob delete-batch -s "\$web" --pattern feature/** --if-unmodified-since $date --account-name ${{ steps.variables.outputs.AZURE_ACCOUNT }}
